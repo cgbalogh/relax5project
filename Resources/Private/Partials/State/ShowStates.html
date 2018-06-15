@@ -1,0 +1,496 @@
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+{namespace addinfo=CGB\Relax5addinfo\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/State/ShowStates.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<data 
+  id="postdata"
+  data-postvar="tx_relax5project_project[appointment]"
+  data-value=""
+/>
+
+<data
+  id="feUserSettings"
+  data-hide_states_without_actions="{feUser.settingsArray.hideStatesWithoutActions}"
+/>
+
+<div class="rlx5-appointment-resultgrid" style="display: none;">
+  <div class="rlx5-appointment-result-left">
+    <f:render partial="Appointment/Result" arguments="{_all}" />
+  </div>
+  <div class="rlx5-appointment-result-right">
+    <f:render partial="Appointment/NextAction" arguments="{_all}" />
+  </div>
+  <div class="rlx5-appointment-result-bottom">
+    <label for="description" class="rlx5-top">
+      <f:translate key="tx_relax5project_domain_model_project.description" />
+    </label>
+    <f:form.textarea name="tx_relax5project_project[appointment][details]" id="description" cols="40" rows="15" class="rlx5-jte"/><br />
+  </div>
+</div>
+
+<div style="text-align: right; padding: .5em; margin-bottom: .5em; position: relative; {project.currentState.state.style}" class="rlx5-project-staterow rlx5-project-meta"><f:for 
+  each="{globalTransitions}" as="transitionOut"><f:if 
+      condition="{transitionOut.meta} && {r5p:ActionDisplay(project:project,projectstate:projectstate,transition:transitionOut,feUserUid:feUserUid,feUsergroupUids:feUsergroupUids)}"><span 
+        class="{f:if(condition:'{mockup}',then:'modalMessage',else:'modalDialog')} rlx5-projectstate-button rlx5-project-withappointment{transitionOut.allowWithAppointment} rlx5-enableon-{transitionOut.enableOnResult}_{transitionOut.enableOnNextAction}"
+        enableonresult="{transitionOut.enableOnResult}"
+        enableonnextaction="{transitionOut.enableOnNextAction}"
+        style="padding: 3px 6px;"
+        alt="{alt}" 
+        title="{title}" 
+        onshow=""
+        onsave="$.blockUI({message:'',overlayCSS:{backgroundColor:'#fff'}});window.location.reload();"
+        wwidth="700px"
+        savetext="{transitionOut.name}"
+        ui-disabled="{transitionOut.allowWithAppointment}"
+        data-ui-disabled="{transitionOut.allowWithAppointment}"
+        uri="{h:uri.ajaxAction(
+            extensionName: 'Relax5project',
+            controller: 'State',
+            pluginName: 'Project',
+            action: 'nextstate',
+            arguments: '{project:project,thisstate:projectstate,nextstate:transitionOut.nextstate,transitionOut:transitionOut }'
+          )}"
+        ><f:image 
+      src="{transitionOut.button.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />{transitionOut.name}</span></f:if></f:for></div>
+
+<table class="rlx5-projectstates">
+  <thead>
+    <tr style="{project.currentState.state.style}">
+      <th class="rlx5-projectstates-name"><f:translate key="tx_relax5project_domain_model_state.state" /></th>
+      <th class="rlx5-projectstates-owner">
+        <f:translate key="tx_relax5project_domain_model_state.owner" /><br />
+        <f:translate key="tx_relax5project_domain_model_state.usergroup" />
+      </th>
+      <th class="rlx5-projectstates-date">
+        <span class="rlx5-projectstate-due">
+          <f:translate key="tx_relax5project_domain_model_state.due" />
+        </span>
+        <br />
+        <span class="rlx5-projectstate-forward">
+          <f:translate key="tx_relax5project_domain_model_state.forward" />
+        </span>          
+        <br />
+        <span class="rlx5-projectstate-done">
+          <f:translate key="tx_relax5project_domain_model_state.done" />
+        </span>
+      </th>
+      <th class="rlx5-r">
+        <span class="ui-button rlx5-button rlx5-project-state-visible rlx5-metabutton rlx5-state-metabutton" id="rlx5-project-statetoggle">
+          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-database-import.svg" class="rlx5-state-metabutton-collapse"/>
+          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-database-export.svg" class="rlx5-state-metabutton-expand" style="display: none;"/>
+        </span>
+        
+        <span class="ui-button rlx5-button rlx5-project-appointment-visible rlx5-metabutton rlx5-appointment-metabutton" id="rlx5-project-appointmenttoggle">
+          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-database-import.svg" class="rlx5-appointment-metabutton-collapse"/>
+          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-database-export.svg" class="rlx5-appointment-metabutton-expand" style="display: none;"/>
+        </span>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <f:for each="{project.states}"  as="projectstate" reverse="TRUE">
+      <tr style="position: relative; {projectstate.state.style}" class="rlx5-project-staterow rlx5-project-staterejected{projectstate.rejected}">
+        <td class="rlx5-projectstates-name rlx5-innercell" 
+            title="#{projectstate.uid} CRDATE:{projectstate.crdate->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )} STATEPOOL:{projectstate.state.uid} N:{projectstate.number}">
+          {f:if(condition:'{project.currentState.uid}=={projectstate.uid}',then:'<div class="rlx5-project-currentstate"></div>')}
+
+          <a:actionicon 
+            uri="{h:uri.ajaxAction(
+              extensionName: 'Relax5project',
+              controller: 'State',
+              pluginName: 'Project',
+              action: 'edit',
+              arguments: '{state:projectstate}'
+            )}"
+            alturi="{h:uri.ajaxAction(
+              extensionName: 'Relax5project ',
+              controller: 'State',
+              pluginName: 'Project',
+              action: 'show',
+              arguments: '{state:projectstate}'
+            )}"
+            class="modalDialog rlx5-button rlx5-edit"
+            title="{projectstate.uid} {projectstate.state.name}" 
+            domainModelObject="State" 
+            action="edit"
+            intendedAction="editorshow"
+            permissions="{state.permissions}" 
+            user="{feUser}" 
+            group=""
+            additionalAttributes="{
+              onshow: '',
+              onsave: 'location.reload();'
+            }"
+          />
+          
+          
+          {projectstate.state.name} {projectstate.tagData}
+        </td>
+        <td class="rlx5-projectstates-owner rlx5-innercell">
+          <f:if condition="{projectstate.forwarder}">
+            <span class="rlx5-projectstate-forward">
+              {projectstate.forwarder.username}
+            </span>
+            <br />
+          </f:if>
+          {projectstate.owner.username}
+          <f:if condition="{projectstate.owner} && {projectstate.usergroup}"><br /></f:if>
+          {projectstate.usergroup.title}
+        </td>
+        <td class="rlx5-projectstates-date rlx5-innercell">
+          <f:if condition="{projectstate.forwardDate}">
+            <span class="rlx5-projectstate-forward">
+              {projectstate.forwardDate->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}
+            </span>
+            <br />
+          </f:if>
+          <span class="rlx5-projectstate-due" title="{projectstate.dueOrig->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}">
+            {projectstate.due->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}
+          </span>
+          <f:if condition="{projectstate.done} && ({projectstate.due} || {projectstate.forwardDate})"><br /></f:if>
+          <span class="rlx5-projectstate-done">
+            {projectstate.done->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}
+          </span>
+        </td>
+        <td class="rlx5-projectstates-buttons" style="position: relative; vertical-align: bottom;">
+          <f:for each="{projectstate.state.transitionOuts}" as="transitionOut">
+            <div>
+              <f:if condition="{r5p:ActionDisplay(project:project,projectstate:projectstate,transition:transitionOut,feUserUid:feUserUid,feUsergroupUids:feUsergroupUids,mode:'message')} != ''">
+                <span class="rlx5-button"
+                  style="padding: 3px 6px; background-color: #ebebeb; color: #999999; margin-right: 2px; border: 1px solid #666;"
+                  alt="{alt}" 
+                  disabled="disabled"
+                  title="#{transitionOut.uid}"
+                  >
+                  {transitionOut.name}
+                </span>
+                
+                <f:image title="{transitionOut.conditionMessage}" src="EXT:relax5core/Resources/Public/Icons/alert.png" />
+                {r5p:ActionDisplay(project:project,projectstate:projectstate,transition:transitionOut,feUserUid:feUserUid,feUsergroupUids:feUsergroupUids,mode:'message')}
+                <div class="clearer" style="margin: 4px 0;"></div>
+              </f:if>
+            </div>
+          </f:for>
+          <div class="rlx5-buttons-td" style="top: -2px; display: block;">
+            <f:for each="{projectstate.state.transitionOuts}" as="transitionOut">
+              <!-- {projectstate.isCurrentState} && ({projectstate.owner.uid}=={feUserUid}) -->
+              <f:if condition="{r5p:ActionDisplay(project:project,projectstate:projectstate,transition:transitionOut,feUserUid:feUserUid,feUsergroupUids:feUsergroupUids)}">
+                <span class="allow_with_appointment" value="{transitionOut.allowWithAppointment}"></span>
+                <span class="{f:if(condition:'{mockup}',then:'modalMessage',else:'modalDialog')} rlx5-projectstate-button rlx5-project-withappointment{transitionOut.allowWithAppointment} rlx5-enableon-{transitionOut.enableOnResult}_{transitionOut.enableOnNextAction}"
+                  enableonresult="{transitionOut.enableOnResult}"
+                  enableonnextaction="{transitionOut.enableOnNextAction}"
+                  style="padding: 3px 6px;"
+                  alt="{alt}" 
+                  title="{transitionOut.name}" 
+                  onshow=""
+                  onsave="$.blockUI({message:'',overlayCSS:{backgroundColor:'#fff'}});window.location.reload();"
+                  wwidth="700px"
+                  savetext="{transitionOut.name}"
+                  ui-disabled="{transitionOut.allowWithAppointment}"
+                  data-ui-disabled="{transitionOut.allowWithAppointment}"
+                  uri="{h:uri.ajaxAction(
+                      extensionName: 'Relax5project',
+                      controller: 'State',
+                      pluginName: 'Project',
+                      action: 'nextstate',
+                      arguments: '{project:project,thisstate:projectstate,nextstate:transitionOut.nextstate,transitionOut:transitionOut }'
+                    )}"
+                  >
+                  <f:image src="{transitionOut.button.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                  {transitionOut.name}
+                </span>
+              </f:if>
+            </f:for>
+            <f:for each="{globalTransitions}" as="transitionOut">
+              <!-- {projectstate.isCurrentState} && ({projectstate.owner.uid}=={feUserUid}) -->
+              <f:if condition="!{transitionOut.meta} && {r5p:ActionDisplay(project:project,projectstate:projectstate,transition:transitionOut,feUserUid:feUserUid,feUsergroupUids:feUsergroupUids)}">
+                <span class="{f:if(condition:'{mockup}',then:'modalMessage',else:'modalDialog')} rlx5-projectstate-button rlx5-project-withappointment{transitionOut.allowWithAppointment} rlx5-enableon-{transitionOut.enableOnResult}_{transitionOut.enableOnNextAction}"
+                  enableonresult="{transitionOut.enableOnResult}"
+                  enableonnextaction="{transitionOut.enableOnNextAction}"
+                  style="padding: 3px 6px;"
+                  alt="{alt}" 
+                  title="{title}" 
+                  onshow=""
+                  onsave="$.blockUI({message:'',overlayCSS:{backgroundColor:'#fff'}});window.location.reload();"
+                  wwidth="700px"
+                  savetext="{transitionOut.name}"
+                  ui-disabled="{transitionOut.allowWithAppointment}"
+                  data-ui-disabled="{transitionOut.allowWithAppointment}"
+                  uri="{h:uri.ajaxAction(
+                      extensionName: 'Relax5project',
+                      controller: 'State',
+                      pluginName: 'Project',
+                      action: 'nextstate',
+                      arguments: '{project:project,thisstate:projectstate,nextstate:transitionOut.nextstate,transitionOut:transitionOut }'
+                    )}"
+                  >
+                  <f:image src="{transitionOut.button.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                  {transitionOut.name}
+                </span>
+              </f:if>
+            </f:for>        
+          </div>
+          
+          <div class="rlx5-clearer"></div>
+          
+          <f:if condition="{projectstate.responsibilities}">
+            <f:render partial="State/Responsibilities" arguments="{project:project, state:projectstate, feUser:feUser}" />
+          </f:if>
+          
+          
+          <div class="rlx5-projectstate-additionalinfo-wrap">
+            <f:alias map="{additionalInfos: '{addinfo:addInfo(object:projectstate)}'}">
+              <f:if condition="{additionalInfos}">
+                <table class="rlx5-projectstate-additionalinfos">
+                  <thead>
+                    
+                  </thead>
+                  <tfoot>
+                    
+                  </tfoot>
+                  <tbody>
+                    <f:for each="{additionalInfos}" as="additionalInfo" reverse="true">
+                      <f:alias map="{field: '{addinfo:definition(object:projectstate,reference:additionalInfo.reference)}'}">
+                        <f:if condition="{field}">
+                          <f:if condition="({field.type} == 'checkbox' && !{additionalInfo.value})">
+                            <f:then>
+                            </f:then>
+                            <f:else>
+                              <tr>
+                                <td class="rlx5-addinfo_title" title="#{additionalInfo.uid} {additionalInfo.owner.username}:{additionalInfo.usergroup.title}">
+                                  {field.labelText}
+                                </td>
+                                <td class="rlx5-addinfo_value">
+                                  <f:switch expression="{field.type}">
+                                    <f:case value="date">
+                                      <!-- addinfo:date -->
+                                      {addinfo:show(value:'{additionalInfo.value}', type: '{field.type}')}
+                                    </f:case>
+                                    <f:case value="textarea">
+                                      <!-- addinfo:textarea -->
+                                      <f:format.html>{additionalInfo.value}</f:format.html>
+                                    </f:case>
+                                    <f:case value="optiongroup">
+                                      <!-- addinfo:optiongroup -->
+                                      {addinfo:show(value:'{additionalInfo.value}', type: '{field.type}', field: field)}
+                                    </f:case>  
+                                    <f:case value="checkbox">
+                                      <f:if condition="{additionalInfo.value}">
+                                        <f:then>
+                                          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" alt="" title="" />
+                                        </f:then>
+                                        <f:else>
+                                          <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-close.svg" alt="" title="" />
+                                        </f:else>
+                                      </f:if>
+                                    </f:case>
+                                    <f:defaultCase>
+                                      <f:format.stripTags>{additionalInfo.value}</f:format.stripTags>
+                                    </f:defaultCase>
+                                  </f:switch>
+                                </td>
+                                <td class="rlx5-rightoutercell rlx5-r">
+                                  <a:actionicon 
+                                    uri="{h:uri.ajaxAction(
+                                      extensionName: 'Relax5addinfo',
+                                      controller: 'AddAttribute',
+                                      pluginName: 'Addinfo',
+                                      action: 'edit',
+                                      arguments: '{addAttribute:additionalInfo,field:field}'
+                                    )}"
+                                    alturi="{h:uri.ajaxAction(
+                                      extensionName: 'Relax5addinfo',
+                                      controller: 'AddAttribute',
+                                      pluginName: 'Addinfo',
+                                      action: 'show',
+                                      arguments: '{addAttribute:additionalInfo,field:field}'
+                                    )}"
+                                    class="modalDialog rlx5-button rlx5-edit"
+                                    title="{additionalInfo.uid} {additionalInfo.value}" 
+                                    domainModelObject="AddAttribute" 
+                                    action="edit"
+                                    intendedAction="editorshow"
+                                    permissions="{additionalInfo.permissions}" 
+                                    user="{additionalInfo.owner}" 
+                                    group="{additionalInfo.usergroup}"
+                                  />
+                                </td>
+                              </tr>  
+                            </f:else>
+                          </f:if>
+                        </f:if>
+                      </f:alias>
+                    </f:for>
+                  </tbody>
+                </table>
+              </f:if>
+            </f:alias>              
+            
+            <!-- additionalinfo old -->
+            
+            <f:if condition="{projectstate.dataArray}">
+              <table class="rlx5-projectstate-additionalinfos">
+                <tbody>
+                  <f:for each="{projectstate.dataArray}" as="additionalInfo" reverse="false">
+                    <tr>
+                      <td class="rlx5-addinfo_title" title="#{additionalInfo.uid} {additionalInfo.owner.username}:{additionalInfo.usergroup.title}">
+                        {additionalInfo.label}
+                      </td>
+                      <td class="rlx5-addinfo_value">
+                        {additionalInfo.value}
+                      </td>
+                    </tr>  
+                  </f:for>
+                </tbody>
+              </table>
+            </f:if>
+            
+            
+          </div>
+          
+          <div class="rlx5-projectstate-appointments-wrap">
+            <f:if condition="{projectstate.appointments}">
+              <table class="rlx5-projectstate-appointments">
+                <f:for each="{projectstate.appointments}" as="appointment" reverse="true">
+                  <tr appointment="{appointment.uid}" class="rlx5-appointments-when{appointment.pastOrFuture}" details="{appointment.details}" appointmenttype="{appointment.appointmentType}">
+                    <td class="rlx5-innercell rlx5-l rlx5-nowrap">
+                      <f:image 
+                        title="#{appointment.uid} {appointment.appointmentType}"
+                        src="EXT:relax5core/Resources/Public/Icons/appointment_type_{appointment.appointmentType}.png" />
+                      <f:if condition="({appointment.result} > 0) && ({appointment.appointmentStatus > 2})">
+                        <f:then>
+                          <f:image 
+                            title="#{appointment.uid} 
+{f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result')}: {f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result.{appointment.result}')}
+S:{appointment.appointmentStatus} R:{appointment.result} C:{appointment.postponedCounter}"
+                            src="EXT:relax5core/Resources/Public/Icons/appointment_result_{appointment.result}.png" />
+                        </f:then>
+                        <f:else>
+                          <f:image 
+                            title="#{appointment.uid} {appointment.appointmentStatus} {appointment.postponedCounter}"
+                            src="EXT:relax5core/Resources/Public/Icons/appointment_status_{appointment.appointmentStatus}.png" />
+                        </f:else>
+                      </f:if>
+                      
+                      <f:if condition="{appointment.postponedCounter}">
+                        <br />
+                        <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-document-history-open.svg" style="width: 15px; height: 15px;" />
+                        <b>{appointment.postponedCounter}&#160;&#x00d7;</b>
+                      </f:if>
+                      
+                    </td>
+                    <td class="rlx5-projectstates-owner rlx5-innercell rlx5-nowrap">
+                      {appointment.owner.username}
+                    </td>
+                    <td class="rlx5-innercell rlx5-nowrap">
+                      {appointment.date->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}
+                    </td>
+                    <td class="rlx5-innercell" style="width:100%;" title="{appointment.details->f:format.stripTags()}">
+                      <b><span reference="appointment_{appointment.uid}_subject">{appointment.subject}</span></b>
+                      <f:format.crop maxCharacters="200">
+                        <f:format.stripTags>
+                          {appointment.details}
+                        </f:format.stripTags>
+                      </f:format.crop>
+                    </td>
+                    <td class="rlx5-rightoutercell rlx5-r rlx5-nowrap">
+                      <f:if condition="({appointment.pastOrFuture}==-1) || ({appointment.pastOrFuture}==1)">
+                        <f:form.radio 
+                          value="{appointment.uid}" 
+                          name="tx_relax5project_project[appointment][checkappointment]" 
+                          class="rlx5-project-checkappointment"
+                        />
+                      </f:if>
+                      
+                      <f:comment>
+                        <f:if condition="{appointment.status}<=1">
+                          <a:actionicon 
+                            uri="{h:uri.ajaxAction(
+                              extensionName: 'Relax5project',
+                              controller: 'Appointment',
+                              pluginName: 'Project',
+                              action: 'processAppointment',
+                              arguments: '{appointment:appointment,project:project,thisstate:projectstate}'
+                            )}"
+                            class="modalDialog rlx5-button rlx5-edit"
+                            title="{appointment.uid} {appointment.subject}" 
+                            domainModelObject="Appointment" 
+                            intendedAction="edit"
+                            forceIcon="testIcon"
+                            permissions="{appointment.permissions}" 
+                            user="{appointment.owner}" 
+                            group="{appointment.usergroup}"
+                          />
+                        </f:if>
+                      </f:comment>
+
+                      <a:actionicon 
+                        uri="{h:uri.ajaxAction(
+                          extensionName: 'Relax5core',
+                          controller: 'Appointment',
+                          pluginName: 'Core',
+                          action: 'edit',
+                          arguments: '{appointment:appointment}'
+                        )}"
+                        alturi="{h:uri.ajaxAction(
+                          extensionName: 'Relax5core',
+                          controller: 'Appointment',
+                          pluginName: 'Core',
+                          action: 'edit',
+                          arguments: '{appointment:appointment}'
+                        )}"
+                        class="modalDialog rlx5-button rlx5-edit"
+                        title="{appointment.uid} {appointment.subject}" 
+                        domainModelObject="CGB\\Relax5project\\Domain\\Model\\Appointment" 
+                        intendedAction="editorshow"
+                        permissions="{appointment.permissions}" 
+                        user="{appointment.owner}" 
+                        group="{appointment.usergroup}"
+                        additionalAttributes="{
+                          onshow: '',
+                          onsave: 'location.reload();'
+                        }"
+                        
+                      />
+                      
+                      <a:actionicon 
+                        uri="{h:uri.ajaxAction(
+                          extensionName: 'Relax5core',
+                          controller: 'Appointment',
+                          pluginName: 'Core',
+                          action: 'delete',
+                          arguments: '{appointment:appointment}'
+                        )}"
+                        class="modalConfirm rlx5-button rlx5-delete"
+                        title="{appointment.uid} {appointment.subject}" 
+                        domainModelObject="CGB\\Relax5project\\Domain\\Model\\Appointment" 
+                        intendedAction="delete"
+                        forceIcon="deleteIcon"
+                        action="delete"
+                        permissions="{appointment.permissions}" 
+                        user="{appointment.owner}" 
+                        group="{appointment.usergroup}"
+                        additionalAttributes="{
+                          text: '<b>{appointment.subject}:</b> {f:translate(key:\"tx_relax5core_domain_model_appointment.confirm_delete\")}',
+                          onconfirm: '$(\'[appointment={appointment.uid}]\').fadeOut()'
+                        }"
+                      />
+                    </td>
+                  </tr>
+                  
+                </f:for>
+              </table>
+            </f:if>
+          </div>
+        </td>  
+      </tr>
+    </f:for>  
+  </tbody>
+</table>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/State/ShowStates.html v8.7 -->

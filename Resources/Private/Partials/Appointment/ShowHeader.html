@@ -1,0 +1,62 @@
+{namespace a=CGB\Accessmanager\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Person/ShowHeader.html v8.6 -->
+<!-- rev: 2017-04-30 -->
+
+<div class="rlx5-item-appointment-header rlx5-appointment rlx5-core-data-box {f:if(condition: '{appointment}',then:'rlx5-ispopulated',else:'rlx5-isempty')}">
+  <div class="rlx5-coredata-single">
+    <div class="">
+      <span reference="appointment_{appointment.uid}_subject">{appointment.subject}</span>
+    </div>
+
+    <div class="rlx5-buttons">
+      <a:actionicon 
+        uri="{h:uri.ajaxAction(
+          extensionName: 'Relax5core',
+          controller: 'Appointment',
+          pluginName: 'Core',
+          action: 'edit',
+          arguments: '{appointment:appointment}'
+        )}"
+        alturi="{h:uri.ajaxAction(
+          extensionName: 'Relax5core',
+          controller: 'Appointment',
+          pluginName: 'Core',
+          action: 'show',
+          arguments: '{appointment:appointment}'
+        )}"
+        class="modalDialog rlx5-button rlx5-edit"
+        title="{appointment.uid} {appointment.subject}" 
+        domainModelObject="Appointment" 
+        intendedAction="editorshow"
+        permissions="{appointment.permissions}" 
+        user="{appointment.owner}" 
+        group="{appointment.usergroup}"
+        additionalAttributes="{
+          onshow: '',
+          onsave: '',
+          wwidth:' 700px'
+        }"
+        
+      />
+
+      <a:actionicon 
+        class="modalConfirm rlx5-button rlx5-delete" 
+        title="{appointment.uid} {appointment.subject}" 
+        domainModelObject="Appointment" 
+        intendedAction="delete"
+        permissions="{appointment.permissions}" 
+        user="{appointment.owner}" 
+        group="{appointment.usergroup}"
+        pageType="{f:cObject(typoscriptObjectPath:'lib.relax5core.ajax')}"
+        extensionName="Relax5project"
+        pluginName="Ajax" 
+        controller="Project"
+        arguments="{appointment: appointment}"
+      />
+      
+    </div>
+  </div>
+</div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Person/ShowHeader.html v8.6 -->

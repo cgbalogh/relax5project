@@ -1,0 +1,32 @@
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Address/ShowProjectAddresses.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<f:if condition="{item}">
+  <div class="rlx5-project-addresses rlx5-item-{item.itemtype}-addresses rlx5-{item.itemtype} rlx5-core-data-box {f:if(condition: '{item}',then:'rlx5-ispopulated',else:'rlx5-isempty')}">
+    <div id="addressList{item.itemtype}" class="rlx5-coredata-block">
+      <div class="" 
+           uri="{h:uri.ajaxAction(extensionName: 'Relax5core', controller: 'Address', pluginName: 'Core', action: 'resort')}" 
+        >
+        <f:for each="{item.addresses}" as="address">
+          <div id="address_{address.uid}" class="rlx5-address" uid="{address.uid}">
+            <f:render partial="Address/ShowOneProjectAddress" arguments="{address:address,project:project}" />
+          </div>
+        </f:for>
+      </div>
+    </div>
+  </div>
+</f:if>
+
+<script>
+  // mark current selected address
+  $('.rlx5-project-address [checked]').closest('.rlx5-project-address').addClass('rlx5-project-address-selected');
+  
+  $('.rlx5-project-address').click(function(){
+    $('.rlx5-project-address').removeClass('rlx5-project-address-selected') ;
+    $(this).find('[type=radio]').prop('checked', true);
+    $(this).addClass('rlx5-project-address-selected') ;
+  });
+  
+</script>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Address/ShowProjectAddresses.html v8.7 -->

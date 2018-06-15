@@ -1,0 +1,44 @@
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Address/ShowOneProjectAddresses.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<div class="rlx5-coredata-single rlx5-project-address rlx5-disable{address.allowMail}" id="address_{address.uid}">
+  <div class="">
+    <f:image src="{address.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+    <span reference="address_{address.uid}_country">{address.country}</span>
+    <span reference="address_{address.uid}_zip">{address.zip}</span>
+    <span reference="address_{address.uid}_city">{address.city -> f:format.crop(maxCharacters: 15, respectWordBoundaries: false)}</span>, 
+    <span reference="address_{address.uid}_address">{address.address -> f:format.crop(maxCharacters: 15, respectWordBoundaries: false)}</span>
+    <span reference="address_{address.uid}_number">{address.number}</span>
+    <span reference="address_{address.uid}_muberAdditions">{address.numberAdditions}</span>
+  </div>
+  <div class="rlx5-buttons">
+    <f:form.radio value="{address.uid}" name="project[address]" checked="{address.uid} == {project.address.uid}" style="visibility: hidden;" />
+    <a:actionicon 
+      uri="{h:uri.ajaxAction(
+        extensionName: 'Relax5core',
+        controller: 'Address',
+        pluginName: 'Core',
+        action: 'edit',
+        arguments: '{address: address}'
+      )}"
+      alturi="{h:uri.ajaxAction(
+        extensionName: 'Relax5core',
+        controller: 'Address',
+        pluginName: 'Core',
+        action: 'show',
+        arguments: '{address: address}'
+      )}"
+      
+      class="modalDialog rlx5-button rlx5-edit"
+      title="{address.address}" 
+      domainModelObject="CGB\\Relax5core\\Domain\\Model\\Address" 
+      intendedAction="editorshow"
+      permissions="{address.parent.permissions}" 
+      user="{address.parent.owner}" 
+      group="{address.parent.usergroup}"
+    />
+
+  </div>
+</div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Address/ShowOneProjectAddresses.html v8.7 -->

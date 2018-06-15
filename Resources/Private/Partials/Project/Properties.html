@@ -1,0 +1,41 @@
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Project/Properties.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<div class="rlx5-item-{itemtype}-data rlx5-{itemtype} rlx5-core-data-box">
+  <table class="tx-relax5project">
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.name" /></td>
+      <td>{project.name}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.description" /></td>
+      <td>{project.description}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.time_horizon" /></td>
+      <td>{project.timeHorizon}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.operative_start" /></td>
+      <td>{project.operativeStart -> f:format.date()}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.operative_end" /></td>
+      <td>{project.operativeEnd -> f:format.date()}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.target" /></td>
+      <td>{project.target}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.actual" /></td>
+      <td>{project.actual}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_project.address" /></td>
+      <td>{project.address.country} {project.address.zip} {project.address.city} {project.address.address} {project.address.number}</td>
+    </tr>
+  </table>
+</div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Project/Properties.html v8.7 -->

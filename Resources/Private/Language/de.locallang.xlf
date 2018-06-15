@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-07-23T12:36:07Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="tx_relax5project_domain_model_project">
+				<source>Project</source>
+				<target>Projekt</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.description">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.time_horizon">
+				<source>Time Horizon</source>
+				<target>Zeithorizont</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.operative_start">
+				<source>Operative Start</source>
+				<target>Projektbeginn</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.operative_end">
+				<source>Operative End</source>
+				<target>Projektende</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.target">
+				<source>Target</source>
+				<target>Angebot</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.actual">
+				<source>Actual</source>
+				<target>Auftrag</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.appointments">
+				<source>Appointments</source>
+				<target>Termine</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.states">
+				<source>States</source>
+				<target>Zustände</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.person">
+				<source>Person</source>
+				<target>Person</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.company">
+				<source>Company</source>
+				<target>Firma</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.owner">
+				<source>Owner</source>
+				<target>Eigentümer</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.usergroup">
+				<source>Usergroup</source>
+				<target>Benutzergruppe</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.general_data">
+				<source>General Data</source>
+				<target>Allgemeine Daten</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.detail_data">
+				<source>Detail Data</source>
+				<target>Detaildaten</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.cost">
+				<source>Cost</source>
+				<target>Kosten</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state">
+				<source>State</source>
+				<target>Zustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.state_name">
+				<source>State Name</source>
+				<target>Zustandsname</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.state_group">
+				<source>State Group</source>
+				<target>Zustandsgruppe</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.due">
+				<source>Due</source>
+				<target>Fällig</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.due_orig">
+				<source>Due (original)</source>
+				<target>Fällig (ursprünglich)</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.done">
+				<source>Done</source>
+				<target>Erledigt</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.forward">
+				<source>Forward</source>
+				<target>Weiterleitung</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.notify">
+				<source>Notify</source>
+				<target>Benachrichtigung</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.appointments">
+				<source>Appointments</source>
+				<target>Termine</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.state">
+				<source>State</source>
+				<target>Zustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.owner">
+				<source>Owner</source>
+				<target>Eigentümer</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.usergroup">
+				<source>Usergroup</source>
+				<target>Benutzergruppe</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_appointment">
+				<source>Appointment</source>
+				<target>Termin</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_appointment.locked">
+				<source>Locked</source>
+				<target>Gesperrt</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_phasepool">
+				<source>Phase Pool</source>
+				<target>Verfügbare Phasen</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_phasepool.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_phasepool.style">
+				<source>Style</source>
+				<target>Stil</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_phasepool.states">
+				<source>States</source>
+				<target>Zustände</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool">
+				<source>State Pool</source>
+				<target>Verfügbare Zustands</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.description">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.subgroup">
+				<source>Subgroup</source>
+				<target>Untergruppe</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.style">
+				<source>Style</source>
+				<target>Stil</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.transition_ins">
+				<source>Transition Ins</source>
+				<target>Übergänge Ein</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_statepool.transition_outs">
+				<source>Transition Outs</source>
+				<target>Übergänge Aus</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool">
+				<source>Transition Pool</source>
+				<target>Verfügbare Übergänge</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.description">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.allow_project_owner">
+				<source>Allowed for Project Owner</source>
+				<target>Erlaubt für Projekteigentümer</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.allow_state_owner">
+				<source>Allowed für State Owner</source>
+				<target>Erlaubt für Zustandseigentümer</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.allow_parent_owner">
+				<source>Allowed für Parent Owner</source>
+				<target>Erlaubt für Eigentümer Elternelement</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.actions">
+				<source>Actions</source>
+				<target>Aktionen</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.nextstate">
+				<source>Next State</source>
+				<target>Nächster Zustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.allow_user">
+				<source>Allowed User</source>
+				<target>Erlaubte Benutzer</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_transitionpool.allow_group">
+				<source>Allowed Group</source>
+				<target>Erlaubte Benutzergruppen</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_actionpool">
+				<source>Action Pool</source>
+				<target>Verfügbare Aktionen</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_actionpool.id">
+				<source>Id</source>
+				<target>Id</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_actionpool.name">
+				<source>Name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_actionpool.type">
+				<source>Type</source>
+				<target>Typ</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_actionpool.options">
+				<source>Options</source>
+				<target>Optionen</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.prev">
+				<source>Previous State</source>
+				<target>Vorheriger Zustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_state.next">
+				<source>Next State</source>
+				<target>Nächster Zustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.initial_state">
+				<source>Initial State</source>
+				<target>Anfangszustand</target>
+			</trans-unit>
+			<trans-unit id="tx_relax5project_domain_model_project.current_state">
+				<source>Current State</source>
+				<target>Aktueller Zustand</target>
+			</trans-unit>
+			<trans-unit id="fe_users.username">
+				<source>Owner</source>
+				<target>Eigentümer</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

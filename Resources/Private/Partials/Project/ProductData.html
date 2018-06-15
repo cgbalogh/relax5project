@@ -1,0 +1,69 @@
+{namespace r5f=CGB\Relax5validator\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Project/ProductData.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<div id="project_productgroup_wrap" class="is_visible">
+  <label for="project_productgroup_select" class="">
+      <f:translate key="tx_relax5project_domain_model_project.productgroup" />
+  </label>
+  <r5f:form.select 
+    property="productgroup" 
+    options="{productgroups}" 
+    optionValueField="uid" 
+    optionLabelField="name" 
+    size="1" 
+    id="project_productgroup_select" class="" 
+    additionalAttributes="{project:project}" 
+    validatorContext="{validatorContext}"
+  />
+  <div class="clearer"></div>
+</div>
+
+<div id="project_product_wrap">
+  <f:render partial="Productgroup/Product" arguments="{_all}" />
+</div>
+
+<div id="project_productoptions_wrap" class="is_visible">
+  <f:comment>
+    <f:if condition="{project.product.subproducts}">
+      <div class="rlx5-clearer" style="margin: .5em 0; border-bottom: 1px solid #999;"></div>    
+      <f:render partial="Productgroup/Subproducts" arguments="{project:project,productgroups:productgroups,products:products,subproducts:project.product.subproducts,prefix:'subproducts'}" />
+    </f:if>
+    <f:render partial="Productgroup/Productoptions" arguments="{project:project,productgroups:productgroups,products:products,productoptions:product.productoptionsFull,prefix:'productoptions'}" />
+    <div class="rlx5-clearer" style="margin: .5em 0; border-bottom: 1px solid #999;"></div>
+    <f:render partial="Productgroup/Productoptions" arguments="{project:project,productgroups:productgroups,products:products,productoptions:productgroup.productoptionsFull,prefix:'productoptions'}" />
+  </f:comment>
+</div>
+
+<f:render partial="Productgroup/Productoptions" arguments="{project:project,productgroups:productgroups,products:products,productoptions:globaloptions,prefix:'productoptions'}" />
+
+
+<!-- works only within modal dialog window -->
+<script type="text/javascript">
+  <f:format.cdata>
+    $(document).ready(function() {
+      activateLoadProducts ('#project_productgroup_select', '', '#project_product_wrap', $('._loadProducts').attr('loadproducts'), 'tx_relax5project_project[project]' );
+      activateJte('.rlx5-jte', '.rlx5-form');
+    });
+  
+    function validateProductoptions() {
+      <f:for each="{globaloptions}" as="globaloption">
+        <f:if condition="{globaloption.enable}">
+          activate('#productoption_{globaloption.uid}', {globaloption.enable} );
+        </f:if>
+      </f:for>
+    }
+  
+    validateProductoptions();
+    activateDatepicker();
+    activateJte('.rlx5-jte', '.rlx5-form');
+
+    // $('#operativeStart').change(function() { validateProductoptions(); });
+    // $('#operativeStartLatest').change(function() { validateProductoptions(); });
+    // $('#projectTarget').change(function() { validateProductoptions(); });
+  
+  </f:format.cdata>
+</script>
+
+  <!-- docref END: EXT:relax5project/Resources/Private/Partials/Project/ProductData.html v8.7 -->

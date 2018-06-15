@@ -1,0 +1,129 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+
+<div id="dataContainer" style="height: 400px; width: 50%; float: left;">
+  <b>Sie verwalten</b>
+  
+  <table>
+    <tr>
+      <td class="rlx5-r"><f:count subject="{appointmentsPending}" /></td>
+      <td>offene Termine</td>
+      <td>
+        <f:link.action pageUid="{settings.appointmentsPendingPid}" class="ui-button" target="_blank">Jetzt bearbeiten</f:link.action>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="rlx5-r"><f:count subject="{persons}" /></td>
+      <td>Personen</td>
+      <td>
+        <f:link.action pageUid="{settings.personListPid}" class="ui-button" target="_blank">Zur Liste</f:link.action>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="rlx5-r"><f:count subject="{companies}" /></td>
+      <td>Firmen</td>
+      <td>
+        <f:link.action pageUid="{settings.companyListPid}" class="ui-button" target="_blank">Zur Liste</f:link.action>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="rlx5-r"><f:count subject="{projects}" /></td>
+      <td>Projekte</td>
+    </tr>
+
+    <tr>
+      <td class="rlx5-r"><f:count subject="{appointments}" /></td>
+      <td>Termine</td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <div>
+    <div id="chartContainer" style="height: 400px; width: 50%; float: right;"></div>
+    <div class="clearer"></div>
+
+    <f:for each="{projectPieChartData}" as="singleData">
+      <span class="_listProjects_{singleData.uid}" listprojects="
+        <f:uri.action
+          pageUid='{settings.projectListShowPid}' 
+          action='list'
+          controller='Datatable'
+          extensionName='datatables'
+          pluginName='Datatable'
+          arguments='{data: \'{singleData.uid}\'}'
+        />
+        "></span>
+    </f:for>
+  </div>
+
+  <div>
+    <div id="groupedChartContainer" style="height: 400px; width: 50%; float: right;"></div>
+    <div class="clearer"></div>
+
+    <f:for each="{groupedPieChartData}" as="groupedData">
+      <span class="_listProjects_{groupedData.subgroup->f:format.urlencode()}" listprojects="
+        <f:uri.action
+          pageUid='{settings.altProjectListShowPid}' 
+          action='list'
+          controller='Datatable'
+          extensionName='datatables'
+          pluginName='Datatable'
+          arguments='{data: \'{groupedData.subgroup->f:format.urlencode()}\'}'
+        />
+        "></span>
+    </f:for>
+  </div>
+  
+</div>
+
+<script>
+    var data = [];
+    var total = 0;
+    var text = 'aktive Projekt(e)';
+    
+    <f:for each="{projectPieChartData}" as="singleData">
+      // {singleData.style}
+      // {r5p:options(options:singleData.style,result:'css',key:'color')}
+      var o = new Object();
+      o.y = {singleData.cnt};
+      o.uid = {singleData.uid}
+      o.indexLabel = '{singleData.name}';
+      if ('{singleData.colorPrimary}' == '') {
+        o.color = '{r5p:options(options:singleData.style,result:'css',key:'background-color')}';
+      } else {
+        o.color = '{singleData.colorPrimary}';
+      }
+      // o.highlight = '{r5p:options(options:singleData.style,result:'css',key:'color')}';
+      // o.color = '#ee5500';
+      data.push(o);
+      total += {singleData.cnt};
+    </f:for>
+    
+    var groupedData = [];
+    var groupedTotal = 0;
+    var groupedText = 'Gruppiert';
+    
+    <f:for each="{groupedPieChartData}" as="groupedData">
+      // {groupedData.style}
+      // {r5p:options(options:groupedData.style,result:'css',key:'color')}
+      var o = new Object();
+      o.y = {groupedData.cnt};
+      o.uid = '{groupedData.subgroup->f:format.urlencode()}'
+      o.indexLabel = '{groupedData.subgroup}';
+      if ('{singleData.colorPrimary}' == '') {
+        o.color = '{r5p:options(options:groupedData.style,result:'css',key:'background-color')}';
+      } else {
+        o.color = '{groupedData.colorPrimary}';
+      }
+      // o.highlight = '{r5p:options(options:singleData.style,result:'css',key:'color')}';
+      // o.color = '#ee5500';
+      groupedData.push(o);
+      groupedTotal += {groupedData.cnt};
+    </f:for>
+    
+</script>

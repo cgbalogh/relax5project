@@ -1,0 +1,32 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<f:layout name="Default" />
+
+This template displays a EDIT form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Edit.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="main">
+    <div class="rlx5-message-container">
+      <f:flashMessages />
+      <f:render partial="FormErrors" arguments="{object:data}" />
+    </div>
+
+    <f:form action="nextstate" enctype="multipart/form-data" name="state" object="{thisstate}" arguments="{project:project}" class="rlx5-form" 
+      additionalAttributes="{data-ajax-uri: '{h:uri.ajaxAction(extensionName: \\'Relax5project\\',controller: \\'State\\',pluginName: \\'Project\\', action: \\'nextstate\\',arguments:{project:project,thisstate:thisstate,nextstate:nextstate,execute:1,transitionOut:transitionOut})}'}">
+      
+      <f:render partial="State/Nextstate" arguments="{_all}" />
+      <!-- <f:form.submit value="Save" /> -->
+    </f:form>
+    
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/State/Nextstate.html v8.7</p>
+    
+  </f:section>
+

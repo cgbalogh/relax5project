@@ -1,0 +1,29 @@
+
+<f:layout name="Default" />
+
+This template displays a EDIT form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Edit.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="main">
+    <h1>Edit Productgroup</h1>
+      <div class="relax5project-message-container">
+        <f:flashMessages />
+        <f:render partial="FormErrors" />
+      </div>
+
+      <f:form action="update" enctype="multipart/form-data" name="productgroup" object="{productgroup}" >
+        <f:render partial="Productgroup/FormFields" arguments="{productgroup:productgroup}" />
+        <f:form.submit value="Save" />
+      </f:form>
+
+      <p class="footnote">docref: EXT:relax5project/Resources/Private/Productgroup/Edit.html v8.7</p>
+
+  </f:section>

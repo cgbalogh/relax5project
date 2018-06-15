@@ -1,0 +1,432 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10.07.2017, 19:44:49
+    Author     : cbalogh
+*/
+
+.rlx5-project-addresses .rlx5-coredata-block {
+  margin: 0;
+}
+
+
+.rlx5-project-addresses .rlx5-coredata-single {
+  min-height: 0;
+}
+
+.rlx5-project-addresses .rlx5-coredata-single img {
+  height: 14px;
+  width: 14px;
+}
+
+.rlx5-project-address {
+  border: 1px solid transparent;
+  padding: 2px 2px;
+  margin-bottom: 2px;
+  font-size: 85%;
+}
+
+.rlx5-project-address * {
+  cursor: pointer;
+}
+
+.rlx5-project-address-selected {
+  border: 1px solid red;
+}
+
+.rlx5-project-address .rlx5-buttons span {
+  display: block;
+  float: right;
+  margin-left: .5em;
+}
+
+.rlx5-project-datagrid-container {
+  display: grid;
+  justify-content: stretch;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  grid-gap: 4px 4px;
+  /* grid-gap: .5% .5%; */
+}
+
+.rlx5-project-datagrid-container .rlx5-item-project-info       { grid-column-start: 1; grid-column-end: 2; grid-row-start: 1;  grid-row-end: 2; }
+.rlx5-project-datagrid-container .rlx5-item-appointment-info   { grid-column-start: 1; grid-column-end: 2; grid-row-start: 1;  grid-row-end: 2; }
+
+.rlx5-project-datagrid-container .rlx5-item-person-info        { grid-column-start: 3; grid-column-end: 4; grid-row-start: 1;  grid-row-end: 2; }
+.rlx5-project-datagrid-container .rlx5-item-company-info       { grid-column-start: 3; grid-column-end: 4; grid-row-start: 1;  grid-row-end: 2; }
+
+.rlx5-project-datagrid-container .rlx5-item-project-header     { grid-column-start: 1; grid-column-end: 2; grid-row-start: 2;  grid-row-end: 3; }
+.rlx5-project-datagrid-container .rlx5-item-appointment-header     { grid-column-start: 1; grid-column-end: 2; grid-row-start: 2;  grid-row-end: 3; }
+.rlx5-project-datagrid-container .rlx5-item-person-header      { grid-column-start: 3; grid-column-end: 4; grid-row-start: 2;  grid-row-end: 3; }
+.rlx5-project-datagrid-container .rlx5-item-company-header     { grid-column-start: 3; grid-column-end: 4; grid-row-start: 2;  grid-row-end: 3; }
+
+.rlx5-projectgrid-data     { grid-column-start: 1; grid-column-end: 2; grid-row-start: 3;  grid-row-end: 4; }
+.rlx5-projectgrid-product  { grid-column-start: 2; grid-column-end: 3; grid-row-start: 3;  grid-row-end: 4; }
+.rlx5-projectgrid-states   { grid-column-start: 1; grid-column-end: 3; grid-row-start: 4;  grid-row-end: 5; }
+
+.rlx5-projectgrid-parent { grid-column-start: 3; grid-column-end: 4; grid-row-start: 3;  grid-row-end: 7; }
+
+.rlx5-appointment-resultgrid {
+  display: grid;
+  justify-content: stretch;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 4px 4px;
+}
+
+.rlx5-appointment-resultgrid .rlx5-appointment-result-left { grid-column-start: 1; grid-column-end: 2; grid-row-start: 1;  grid-row-end: 2; }
+.rlx5-appointment-resultgrid .rlx5-appointment-result-right { grid-column-start: 2; grid-column-end: 3; grid-row-start: 1;  grid-row-end: 2; }
+.rlx5-appointment-resultgrid .rlx5-appointment-result-bottom { grid-column-start: 1; grid-column-end: 3; grid-row-start: 2;  grid-row-end: 3; }
+/*
+.rlx5-project-datagrid-container .rlx5-item-person-relations   { grid-column-start: 2; grid-column-end: 3; grid-row-start: 3;  grid-row-end: 4; }
+.rlx5-project-datagrid-container .rlx5-item-person-addresses   { grid-column-start: 2; grid-column-end: 3; grid-row-start: 4;  grid-row-end: 5; }
+.rlx5-project-datagrid-container .rlx5-item-person-contacts    { grid-column-start: 2; grid-column-end: 3; grid-row-start: 5;  grid-row-end: 6; }
+.rlx5-project-datagrid-container .rlx5-item-person-links       { grid-column-start: 2; grid-column-end: 3; grid-row-start: 6;  grid-row-end: 7; }
+.rlx5-project-datagrid-container .rlx5-item-person-extra       { grid-column-start: 2; grid-column-end: 2; grid-row-start: 7;  grid-row-end: 8; }
+*/
+
+table.rlx5-projectstates {
+  width: 100%;
+  font-size: 13px;
+  line-height: normal;
+}
+
+table.rlx5-projectstates tr th, 
+table.rlx5-projectstates tr td {
+  padding: .1em .3em;
+}
+
+table.rlx5-projectstates tr td:nth-child(1) {
+  padding-right: .5em;
+}
+
+table.rlx5-projectstates tr td:nth-child(2) {
+
+}
+
+.rlx5-projectstate-due {
+  color: red;
+}
+
+.rlx5-projectstate-forward {
+  color: blue;
+}
+
+.rlx5-projectstate-done {
+  color: green;
+}
+
+table.rlx5-projectstates, 
+table.tx-relax5project {
+  margin-bottom: 1em;
+}
+
+table.tx-relax5project {
+  width: 100%;
+}
+
+table.tx-relax5project tr td:nth-child(1) {
+  font-weight: bold;
+  padding: 0 .5em;
+  text-align: left;
+  min-width: 33%;
+  border-bottom: 1px solid #eeeeee;
+}
+
+table.tx-relax5project tr td:nth-child(2) {
+  border-bottom: 1px solid #eeeeee;
+}
+
+.rlx5-buttons-td {
+  float: right;
+  text-align: right;
+  padding: 3px;
+}
+
+.rlx5-buttons-td img {
+  height: 16px;
+  width: auto;
+}
+
+.rlx5-projectstates-buttons {
+  padding: 0 !important;
+}
+
+.rlx5-buttons-td:after {
+  content: '.';
+  visibility: hidden;
+  height: 0;
+  display: block;
+  clear: both;
+}
+
+table.rlx5-projectstates .rlx5-projectstates-date,
+table.rlx5-projectstates .rlx5-projectstates-usergroup,
+table.rlx5-projectstates .rlx5-projectstates-owner {
+  text-align: center;
+}
+
+td.rlx5-projectstates-date {
+  white-space: nowrap;
+}
+
+.rlx5-projectgrid-data table td p {
+  margin: 0;
+}
+
+td.rlx5-innercell {
+  border-right: 1px solid white;
+} 
+
+table.rlx5-projectstate-appointments {
+  margin-top: .2em;
+  width: 100%;
+}
+
+.rlx5-projectstate-appointments > tbody > tr {
+  border-top: 1px solid white;
+}
+
+@media (max-width: 820px) {
+  table.rlx5-projectstates th,
+  table.rlx5-projectstates td {
+    display: block;
+  }
+
+  table.rlx5-projectstates th:first-child,
+  table.rlx5-projectstates td:first-child {
+    display: table-cell;
+  }
+}
+
+.rlx5-project-checkappointment {
+  display: none;
+}
+
+tr.rlx5-appointments-when-1 {
+  background-color: #f77;
+  color: #eee;
+  cursor: pointer;
+}
+
+tr.rlx5-project-selectedappointment {
+  /* background-color: #f55;
+  color: #eee; */
+  /* border: 3px solid red !important; */
+}
+
+tr.rlx5-project-selectedappointment > td {
+  /* background-color: #f55;
+  color: #eee; */
+  background-color: rgba(240,52,52,.8);
+  color: #eee;
+}
+
+tr.rlx5-appointments-when1 {
+  
+}
+
+tr.rlx5-appointments-when0 {
+  background-color: #cf9;
+}
+
+table.rlx5-projectstate-appointments td {
+  vertical-align: middle;
+}
+
+.disabled {
+  color: #bbb;
+}
+
+a.rlx5-project-link li {
+  list-style: none;
+  margin-bottom: 4px;
+  padding: 2px;
+  
+  border-radius: 5px 5px 5px 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;  
+}
+
+a.rlx5-project-link li:hover {
+  list-style: none;
+  
+  filter:alpha(opacity=60); /* IE */
+  -moz-opacity:0.6; /* Mozilla */
+  opacity: 0.6; /* CSS3 */  
+}
+
+a.rlx5-project-link:hover {
+  text-decoration: none !important;
+  font-style: italic !important;
+}
+
+tr.dt-project td {
+  background-color: #cf9;
+}
+
+tr.rlx5-project-selectedappointment td:first-child {
+  position: relative;
+}
+
+tr.rlx5-project-selectedappointment td:first-child:before {
+  content: '->';
+  display: block;
+  position: absolute;
+  left: -20px;
+}
+
+tr.rlx5-project-staterejected1 > td:nth-child(1),
+tr.rlx5-project-staterejected1 > td:nth-child(2),
+tr.rlx5-project-staterejected1 > td:nth-child(3)
+{
+  text-decoration: line-through;
+}
+
+table.rlx5-projectstate-additionalinfos {
+  width: 100%;
+}
+
+table.rlx5-projectstate-additionalinfos td {
+  vertical-align: top;
+}
+
+.rlx5-rightoutercell {
+  width: 0;
+}
+
+td.rlx5-addinfo_title {
+  font-size: 86%;
+  font-style: italic;
+  width: 20%;
+  text-align: right;
+  line-height: 170%;
+}
+
+td.rlx5-addinfo_value {
+  width: 60%;
+}
+
+table.rlx5-projectstate-additionalinfos tr td {
+  border-bottom: 1px solid white;
+}
+
+table.rlx5-projectstate-additionalinfos tr:last-child td {
+  border-bottom: none;
+}
+
+table.rlx5-projectstate-additionalinfos tr td p {
+  margin: 0;
+}
+
+#projectList h3 {
+  background-color: #dddddd;
+}
+
+tr.rlx5-project-cost-void1 td {
+  text-decoration: line-through;
+}
+
+td.rlx5-projectstates-name {
+  white-space: nowrap;
+}
+
+.rlx5-metabutton {
+  padding: 3px 6px;
+}
+
+th.rotate {
+  /* Something you can count on */
+  vertical-align: bottom;
+}
+
+th.rotate > div {
+  white-space: wrap;
+  /* transform: */
+    /* Magic Numbers */
+    /* translate(45px, 51px)
+    /* 45 is really 360 - 45 */
+    /* rotate(315deg); */
+  /* width: 30px; */
+  border-bottom: 1px solid #ccc;
+  padding: 5px 10px;
+  text-align: center;
+  
+}
+th.rotate > div > span {
+}
+
+table.rlx5-project-statetable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.rlx5-project-statetable td,
+.rlx5-project-statetable th {
+  min-width: 1.3em;
+  min-height: 1.3em;
+  border: 1px solid #bbb;
+  padding: 2px 6px;
+}
+
+div.rlx5-project-currentstate {
+  width: 4px;
+  height: 4px;
+  border-left: 4px solid red;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  position: absolute;
+  margin-left: -9px;
+  margin-top: 3px;
+}
+
+
+table.rlx5-project-cost, table.rlx5-project-role {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.rlx5-project-role {
+  width: 330px !important;
+  margin: 1em 0;
+}
+
+table.rlx5-project-cost tr.rlx5-project-cost_void1 td {
+  text-decoration: line-through;
+  background-color: #f0b7c1;
+}
+
+table.rlx5-project-cost tr.rlx5-project-cost_confirmed1 td {
+  background-color: #c8f0c0;
+}
+
+table.rlx5-project-cost td, table.rlx5-project-cost th,
+table.rlx5-project-role td, table.rlx5-project-role th {
+  padding: 2px;
+  border: 1px solid #bebebe;
+}
+
+table.rlx5-project-cost td.rlx5-project-cost_left {
+  
+}
+
+table.rlx5-project-cost td.rlx5-project-cost_currency {
+  text-align: right
+}
+
+table.rlx5-project-cost td.rlx5-project-cost_center {
+  text-align: center;
+  
+}
+
+table.rlx5-project-cost td.rlx5-project-cost_date {
+  
+}
+
+.rlx5-project-meta:empty {
+  display: none;
+}

@@ -1,0 +1,113 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<f:for each="{projects}" as="project">
+  <f:if condition="{newpage}">
+    <f:then>
+      <f:if condition="!{project.clone}">
+        <a 
+          href="{f:uri.action(
+            pageUid:settings.projectShowPid, 
+            extensionName: 'Relax5project', 
+            controller: 'Project', 
+            action: 'show', 
+            arguments: {project:project} 
+          )}" 
+          class="rlx5-project-link"
+        >
+          <li style="border: 1px solid transparent; {project.currentState.state.style}; font-size: 90%;">
+            <span style="font-size: 88%; font-style: italic;">#{project.uid}</span> {project.name} {project.productgroup.name} {project.currentState.state.name} {project.currentState.owner.username}
+          </li>
+        </a> 
+        <f:for each="{project.childProjects}" as="childProject">
+          <a 
+            href="{f:uri.action(
+              pageUid:settings.projectShowPid, 
+              extensionName: 'Relax5project', 
+              controller: 'Project', 
+              action: 'show', 
+              arguments: {project:childProject} 
+            )}" 
+            class="rlx5-project-link"
+          >
+            <li style="border: 1px solid transparent; {childProject.currentState.state.style}; font-size: 90%; margin-left: 20px; margin-top: -5px;">
+              <span style="font-size: 88%; font-style: italic;">#{childProject.uid}</span>  {childProject.name} {childProject.productgroup.name} {childProject.currentState.state.name} {childProject.currentState.owner.username}
+            </li>
+          </a> 
+        </f:for>
+      </f:if>
+    </f:then>
+    <f:else>
+      <f:if condition="!{project.clone}">
+        <a 
+          href="{h:uri.ajaxAction(
+            extensionName: 'Relax5project',
+            controller: 'Project',
+            pluginName: 'Project',
+            action: 'ajaxShow',
+            arguments: '{project:project}'
+          )}" 
+          class="rlx5-project-link rlx5-project-reload"
+          onclick="return false;"
+        >
+          <li style="border: 1px solid transparent; {project.currentState.state.style}; font-size: 90%;">
+            <span style="font-size: 88%; font-style: italic;">#{project.uid}</span> {project.name} {project.productgroup.name} {project.currentState.state.name} {project.currentState.owner.username}
+          </li>
+        </a>  
+        
+        <f:for each="{project.childProjects}" as="childProject">
+          <a 
+            href="{h:uri.ajaxAction(
+              extensionName: 'Relax5project',
+              controller: 'Project',
+              pluginName: 'Project',
+              action: 'ajaxShow',
+              arguments: '{project:childProject}'
+            )}" 
+            class="rlx5-project-link rlx5-project-reload"
+            onclick="return false;"
+          >
+            <li 
+              style="border: 1px solid transparent; {childProject.currentState.state.style}; font-size: 90%; margin-left: 20px; margin-top: -5px;">
+              <span 
+                style="font-size: 88%; font-style: italic;">
+                  #{childProject.uid}</span>
+              {childProject.name} {childProject.productgroup.name} {childProject.currentState.state.name} {childProject.currentState.owner.username}
+            </li>
+          </a>  
+        </f:for>
+      </f:if>
+    </f:else>
+  </f:if>
+</f:for>
+
+<f:if condition="{load}">
+  <f:image
+    class="modalDialog rlx5-button rlx5-new"
+    id="rlx5-project-add"
+    src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-add.svg" 
+    alt="" 
+    title="{f:translate(key:'tx_datatables.new')}" 
+    additionalAttributes="{
+      onshow: \" 
+        \",
+
+      onsave: \"loadProjects(); 
+        \",
+
+      uri:\"
+        {h:uri.ajaxAction(
+          extensionName: 'relax5project',
+          controller: 'Project',
+          pluginName: 'Project',
+          action: 'new',
+          arguments: {person:person, company:company}
+        )} \"
+    }"
+  />
+
+  <script>
+    // autoAjax();
+  </script>
+</f:if>
+
+

@@ -1,0 +1,75 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+
+  <f:section name="main">
+    <div class="rlx5-message-container">
+      <f:flashMessages />
+      <f:render partial="FormErrors" arguments="{object:Project}" />
+    </div>
+
+    <f:form action="create" enctype="multipart/form-data" name="project" object="{project}" class="rlx5-form" 
+      additionalAttributes="{data-ajax-uri: '{h:uri.ajaxAction(extensionName: \\'Relax5project\\',controller: \\'Project\\',pluginName: \\'Project\\', action: \\'create\\')}'}">
+      
+      <div class="rlx5-modalform-stretcher" style="height: 0; min-width: 500px;"></div>  
+
+      <f:render partial="Project/FormFields" arguments="{_all}" />
+
+      <div id="rlx5project-tabs">
+        <ul>
+          <li><a href="#rlx5project-data"><span><f:translate key="tx_relax5project_domain_model_project.general_data" /></span></a></li>
+          <li><a href="#rlx5project-detail"><span><f:translate key="tx_relax5project_domain_model_project.product_data" /></span></a></li>
+          <li><a href="#rlx5project-cost"><span><f:translate key="tx_relax5project_domain_model_project.cost" /></span></a></li>
+        </ul>
+        <div id="rlx5project-data">
+          <f:render partial="Project/ProjectData" arguments="{_all}" />
+        </div>
+        
+        <div id="rlx5project-detail">
+          <f:render partial="Project/ProductData" arguments="{_all}" />
+        </div>
+        
+        <div id="rlx5project-cost">
+        </div>
+      </div>
+    </f:form>
+    
+    <!-- will be needed for new project outside ShowData -->
+    <span class="_loadProducts" loadproducts="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Productgroup', action: 'loadProducts')}"></span>
+    <span class="_loadProductoptions" loadproductoptions="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Productgroup', action: 'loadProductoptions', arguments:'{project: project}')}"></span>
+    
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/Project/New.html v8.7</p>
+    
+    <!-- works only within modal dialog window -->
+    <script type="text/javascript">
+      <f:format.cdata>
+        $(document).ready(function() {
+          $( "#rlx5project-tabs" ).tabs();
+          activateCollapser('.rlx5-collapser', '.rlx5-form', true);
+          showErrors();
+          activateJte('.rlx5-jte', '.rlx5-form');
+          activateComputeRights();
+        });
+      </f:format.cdata>
+    </script>
+    
+    
+  </f:section>
+
+
+</html>

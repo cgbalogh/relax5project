@@ -1,0 +1,89 @@
+{namespace r5f=CGB\Relax5validator\ViewHelpers}
+
+<label for="owner">
+  <f:translate key="tx_relax5project_domain_model_state.owner" />
+</label>
+<f:form.select 
+  id="owner"
+  property="owner" 
+  options="{ownerSelect}" 
+  optionLabelField="username" 
+  optionValueField="uid" 
+  size="1" 
+/>
+<br />
+
+<label for="usergroup">
+  <f:translate key="tx_relax5project_domain_model_state.usergroup" />
+</label>
+<f:form.select 
+  id="usergroup"
+  property="usergroup" 
+  options="{usergroupSelect}" 
+  optionLabelField="title" 
+  optionValueField="uid" 
+  size="1" 
+/>
+<br />
+
+<label for="forwarder">
+  <f:translate key="tx_relax5project_domain_model_state.forwarder" />
+</label>
+<f:form.select 
+  id="forwarder"
+  property="usergroup" 
+  options="{usergroupSelect}" 
+  optionLabelField="title" 
+  optionValueField="uid"
+  size="1" 
+/>
+<br />
+
+<label for="due">
+  <f:translate key="tx_relax5project_domain_model_state.due" />
+</label>
+<r5f:form.textfield 
+  id="due" 
+  property="due" 
+  validatorContext="UpdateState" 
+  class="datepicker" 
+  value="{state.due->f:format.date(format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_general.date_format\')}')}" 
+/>
+<br />
+
+<label for="dueOrig">
+  <f:translate key="tx_relax5project_domain_model_state.due_orig" />
+</label>
+<r5f:form.textfield 
+  id="dueOrig" 
+  property="dueOrig" 
+  validatorContext="UpdateState" 
+  class="datepicker" 
+  value="{state.dueOrig->f:format.date(format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_general.date_format\')}')}" 
+/>
+<br />
+
+<label for="done">
+  <f:translate key="tx_relax5project_domain_model_state.done" />
+</label>
+<r5f:form.textfield 
+  id="done" 
+  property="done" 
+  validatorContext="UpdateState" 
+  class="datetimepicker" 
+  value="{state.done->f:format.date(format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_general.datetime_format\')}')}" 
+/>
+<br />
+
+<label for="forward">
+  <f:translate key="tx_relax5project_domain_model_state.forward" />
+</label>
+<r5f:form.textfield 
+  id="forward" 
+  property="forwardDate" 
+  validatorContext="UpdateState" 
+  class="datetimepicker" 
+  value="{state.forwardDate->f:format.date(format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_general.datetime_format\')}')}" 
+/>
+<br />
+  

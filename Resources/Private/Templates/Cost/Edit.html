@@ -1,0 +1,46 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+
+<f:layout name="Default" />
+
+This template displays a EDIT form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Edit.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="main">
+    <div class="rlx5-message-container">
+      <f:flashMessages />
+      <f:render partial="FormErrors" arguments="{object:Cost}" />
+    </div>
+
+    <f:form action="update" enctype="multipart/form-data" name="cost" object="{cost}" class="rlx5-form" 
+      additionalAttributes="{data-ajax-uri: '{h:uri.ajaxAction(extensionName: \\'Relax5project\\',controller: \\'Cost\\',pluginName: \\'Project\\', action: \\'update\\')}'}">
+      
+      <div class="rlx5-modalform-stretcher" style="height: 0; min-width: 500px;"></div>  
+      
+      <f:render partial="Cost/FormFields" arguments="{_all}" />
+      
+    </f:form>
+    
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/Cost/Edit.html v8.7</p>
+    
+    <!-- works only within modal dialog window -->
+    <script type="text/javascript">
+      <f:format.cdata>
+        $(document).ready(function() {
+          showErrors();
+          activateDatepicker();
+        });
+      </f:format.cdata>
+    </script>
+    
+    
+  </f:section>

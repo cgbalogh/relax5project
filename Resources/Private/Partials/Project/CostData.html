@@ -1,0 +1,99 @@
+
+
+<table class="rlx5-project-cost">
+  <thead>
+      <tr style="border-bottom: 3px solid #333;">
+        <td>
+          <f:translate key="tx_relax5project_domain_model_cost.date" />
+        </td>
+        <td>
+          <f:translate key="tx_relax5project_domain_model_cost.name" />
+        </td>
+        <td>
+          <f:translate key="tx_relax5project_domain_model_cost.keycode" />
+        </td>
+        <td class="rlx5-r">
+          <f:translate key="tx_relax5project_domain_model_cost.target" />
+        </td>
+        <td class="rlx5-r">
+          <f:translate key="tx_relax5project_domain_model_cost.actual" />
+        </td>
+        <td class="rlx5-c">
+          <f:translate key="tx_relax5project_domain_model_cost.owner" />
+        </td>
+      </tr>
+  </thead>
+  
+  <tfoot>
+      <tr style="border-top: 3px solid #333;">
+        <td>
+        </td>
+        <td>
+        </td>
+        <td>
+        </td>
+        <td class="rlx5-r">
+          {project.totalTarget->f:format.currency()}
+        </td>
+        <td class="rlx5-r">
+          {project.totalActual->f:format.currency()}
+        </td>
+        <td>
+          &nbsp;
+        </td>
+      </tr>
+  </tfoot>
+  
+  <tbody>
+    <f:for each="{project.costs}" as="cost">
+      <tr class="rlx5-project-cost-void{cost.void}">
+        <td>
+          {cost.date->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.date_format\')}'  )}
+        </td>
+        <td>
+          {cost.name}
+        </td>
+        <td>
+          {cost.keycode}
+        </td>
+        <td class="rlx5-r">
+          {cost.target->f:format.currency()}
+        </td>
+        <td class="rlx5-r">
+          {cost.actual->f:format.currency()}
+        </td>
+        <td class="rlx5-c">
+          {cost.owner.username}
+        </td>
+        <td style="padding: 0 0 0 .2em; border: none;width: 1px;">
+          <a:actionicon 
+            uri="{h:uri.ajaxAction(
+              extensionName: 'Relax5project',
+              controller: 'Cost',
+              pluginName: 'Project',
+              action: 'edit',
+              arguments: '{cost:cost}'
+            )}"
+            alturi="{h:uri.ajaxAction(
+              extensionName: 'Relax5core',
+              controller: 'Address',
+              pluginName: 'Core',
+              action: 'show',
+              arguments: '{address: address}'
+            )}"
+
+            class="modalDialog rlx5-button rlx5-edit"
+            title="{cost.uid}" 
+            domainModelObject="CGB\\Relax5project\\Domain\\Model\\Cost" 
+            intendedAction="edit"
+            permissions="" 
+            user="{cost.owner}" 
+            group=""
+          />
+          
+        </td>
+
+      </tr>
+    </f:for>
+  </tbody>
+</table>

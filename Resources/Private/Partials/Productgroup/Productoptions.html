@@ -1,0 +1,99 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<f:for each="{productoptions}" as="productoption">
+
+  <div id="productoption_wrap_{productoption.uid}">
+    <f:switch expression="{productoption.inputType}">
+      <f:case value="divider">
+        <div class="rlx5-clearer" style="margin: .5em 0; border-bottom: 1px solid #999;"></div>
+      </f:case>
+
+      <f:case value="input">
+        <label for="productoption_{productoption.uid}">
+          {productoption.labeltext}
+        </label>
+        <f:form.textfield 
+          name="{prefix}[{productoption.uid}]" 
+          id="productoption_{productoption.uid}"
+          value="<r5p:ProductoptionValue project='{project}' productoption='{productoption}' />" 
+          additionalAttributes="{optionid:productoption.uid, condition: productoption.displayCondition}"
+        /><br />
+      </f:case>
+
+      <f:case value="int">
+        <label for="productoption_{productoption.uid}">
+          {productoption.labeltext}
+        </label>
+        <f:form.textfield 
+          name="{prefix}[{productoption.uid}]" 
+          id="productoption_{productoption.uid}"
+          value="<r5p:ProductoptionValue project='{project}' productoption='{productoption}' />" 
+          additionalAttributes="{optionid:productoption.uid, condition: productoption.displayCondition}"
+        /><br />
+        <script>
+          $('#productoption_{productoption.uid}').on('input', function() {
+            $(this).val(makeInt($(this).val()));
+          });
+        </script>
+      </f:case>
+
+      <f:case value="check">
+        <label for="productoption_{productoption.uid}">
+          {productoption.labeltext}
+        </label>
+        <f:form.checkbox
+          name="{prefix}[{productoption.uid}]" 
+          id="productoption_{productoption.uid}"
+          checked="<r5p:ProductoptionValue project='{project}' productoption='{productoption}' />"
+          value="{productoption.inputValues}" 
+          additionalAttributes="{optionid:productoption.uid, condition: productoption.displayCondition}"
+          disabled="disabled"
+          class="rlx5-disabled"
+        />
+      </f:case>
+
+      <f:case value="select">
+        <label for="productoption_{productoption.uid}">
+          {productoption.labeltext}
+        </label>
+        <f:form.select 
+          name="{prefix}[{productoption.uid}]" 
+          id="productoption_{productoption.uid}"
+          options="{productoption.inputValuesArray}" 
+          optionValueField="value" 
+          optionLabelField="label" 
+          value="<r5p:ProductoptionValue project='{project}' productoption='{productoption}' />" 
+          size="1" 
+          additionalAttributes="{onchange: 'checkProductoptions();',optionid:productoption.uid, condition: productoption.displayCondition}"
+        />
+      </f:case>
+      
+      <f:case value="select">
+        <label>
+            {productoption.labeltext}
+        </label>
+        <div style="width: inherit; max-width: 30em; float: left; white-space: normal;">
+          <span optionid="{productoption.uid}" condition="{productoption.displayCondition}">
+            <f:for each="{productoption.inputValuesArray}" as="radio" >
+              <label class="rlx5-right" style="white-space: nowrap;">
+                <f:form.radio
+                  name="{prefix}[{projectoption.uid}]"
+                  value="{radio.label}" 
+                  style="float: none; vertical-align: text-bottom; "
+                />
+              {radio.label}</label>      
+            </f:for>
+          </span>
+        </div>
+      </f:case>
+    </f:switch>
+  </div>
+  
+  <script>
+    $('#productoption_{productoption.uid}').change(function() {
+      validateProductoptions();
+    });
+  </script>
+  
+  
+</f:for>

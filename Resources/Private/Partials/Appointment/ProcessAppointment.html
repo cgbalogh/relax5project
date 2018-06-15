@@ -1,0 +1,48 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Project/ShowData.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<div class="rlx5-modalform-stretcher" style="height: 0; min-width: 1050px;"></div>  
+
+<div class="rlx5-project-data-box-outer rlx5-project-datagrid-container">
+  <f:render partial="General/ShowInfo" arguments="{item:appointment, itemtype:'appointment'}" />
+  <f:render partial="Appointment/ShowHeader" arguments="{_all}" />    
+  
+  <div class="rlx5-projectgrid-data">
+    <f:render partial="Appointment/Result" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-product">
+    <f:render partial="Appointment/NextAction" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-states">
+    <f:render partial="State/ShowStates" arguments="{_all}" />
+  </div>
+
+  <f:render partial="General/ShowInfo" arguments="{item:project.person, itemtype:'person'}" />
+  <f:render partial="Person/ShowHeader" arguments="{person:project.person}" />    
+  
+  <div class="rlx5-projectgrid-parent">
+    <f:render partial="Person/ShowRelations" arguments="{person:project.person,showcontacts:1}" />
+    <f:render partial="Address/ShowAddresses" arguments="{item:project.person}" />
+    <f:render partial="Contact/ShowContacts" arguments="{item:project.person}" />
+    <f:render partial="Link/ShowLinks" arguments="{item:project.person, focus:'person'}" />
+    <f:render partial="General/ShowExtra" arguments="{item:project.person, focus:'person'}" />
+  </div>
+  
+</div>
+
+    <!-- works only within modal dialog window -->
+    <script type="text/javascript">
+      <f:format.cdata>
+        $(document).ready(function() {
+          // $( "#rlx5project-tabs" ).tabs();
+          // activateCollapser('.rlx5-collapser', '.rlx5-form', true);
+          // showErrors();
+          // activateJte('.rlx5-jte', '.rlx5-form');
+          // activateComputeRights();
+        });
+      </f:format.cdata>
+    </script>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Appointment/ProcessAppointment.html v8.7 -->

@@ -1,0 +1,26 @@
+<f:form method="post" action="ajaxUpdate" name="address" fieldNamePrefix="tx_crmrelax5_ajax" id="formAddress" object="{address}" class="tx_crmrelax5-edit tx_crmrelax5-{itemtype}">
+
+		<!-- 1: country | zip | city -->
+		<f:form.hidden property="country" id="country" class="tx_crmrelax5_input-country"/>
+		<f:form.hidden property="zip" id="zip" class="tx_crmrelax5_input-zip geomap-force" />
+		<f:form.hidden property="city" id="city" class="tx_crmrelax5_input-city geomap-force"/>
+
+		<!-- 2: address | number | number_additions -->
+		<f:form.hidden property="address" id="address" class="tx_crmrelax5_address tx_crmrelax5_input-address geomap" />
+		<f:form.hidden property="number" id="number" class="tx_crmrelax5_number tx_crmrelax5_input-number geomap" />
+
+		<!-- 3: state -->
+		<f:form.hidden property="state" id="state" class="tx_crmrelax5_input-state"/>
+
+		<!-- 8: lat | lon -->
+		<f:form.hidden property="lat" id="lat" class="geomap-force tx_crmrelax5_input-lat"/>
+		<f:form.hidden property="lon" id="lon" class="geomap-force tx_crmrelax5_input-lon"/>
+
+		<div style="display: none;">
+			<f:form.checkbox id="geoOnly" property="geoOnly" value="1" checked="{address.geoOnly}" class="tx_crmrelax5_input-allowMail tx_crmrelax5_checkbox geomap-pos" />
+		</div>
+		
+		<!-- 9: map -->
+        <div id="map" class="googlemap" style="width: 100%; height: 300px; border: 1px solid #a9a9a9; padding: 2px; margin-bottom: .5em; "></div>
+</f:form>
+

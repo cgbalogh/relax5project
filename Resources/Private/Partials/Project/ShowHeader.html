@@ -1,0 +1,79 @@
+{namespace a=CGB\Accessmanager\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Person/ShowHeader.html v8.6 -->
+<!-- rev: 2017-04-30 -->
+
+<div class="rlx5-item-project-header rlx5-project rlx5-core-data-box {f:if(condition: '{project}',then:'rlx5-ispopulated',else:'rlx5-isempty')} draggable" projectuid="{project.uid}">
+  <div class="rlx5-coredata-single rlx5-project-headerdata">
+    <div class="">
+      <span reference="project_{project.uid}_productgroup_name">{project.productgroup.name}</span>
+      <span reference="project_{project.uid}_product_name">{project.product.name}</span>
+    </div>
+
+    <div class="rlx5-buttons"><f:if condition="{project.clone}"><f:then><f:if condition="{project.project}"><a:actionicon 
+              uri="{h:uri.ajaxAction(
+                extensionName: 'Relax5project',
+                controller: 'Project',
+                pluginName: 'Project',
+                action: 'edit',
+                arguments: '{project:project.project}'
+              )}"
+              class="modalDialog rlx5-button rlx5-edit"
+              title="{project.project.uid} {project.project.productgroup.name} {project.project.product.name}" 
+              domainModelObject="Project" 
+              intendedAction="show"
+              permissions="{project.permissions}" 
+              user="{project.owner}" 
+              group="{project.usergroup}"
+              additionalAttributes="{
+                onshow: '',
+                onsave: '',
+                wwidth:' 700px'
+              }"
+            />
+          </f:if></f:then><f:else><a:actionicon 
+            uri="{h:uri.ajaxAction(
+              extensionName: 'Relax5project',
+              controller: 'Project',
+              pluginName: 'Project',
+              action: 'edit',
+              arguments: '{project:project}'
+            )}"
+            alturi="{h:uri.ajaxAction(
+              extensionName: 'Relax5project',
+              controller: 'Project',
+              pluginName: 'Project',
+              action: 'edit',
+              arguments: '{project:project}'
+            )}"
+            class="modalDialog rlx5-button rlx5-edit"
+            title="{project.uid} {project.productgroup.name} {project.product.name}" 
+            domainModelObject="Project" 
+            intendedAction="editorshow"
+            permissions="{project.permissions}" 
+            user="{project.owner}" 
+            group="{project.usergroup}"
+            additionalAttributes="{
+              onshow: '',
+              onsave: 'location.reload();',
+              wwidth:' 700px'
+            }"
+
+          /></f:else></f:if><a:actionicon 
+        class="modalConfirm rlx5-button rlx5-delete" 
+        title="{project.uid} {project.productgroup.name} {project.product.name}" 
+        domainModelObject="Project" 
+        intendedAction="delete"
+        permissions="{project.permissions}" 
+        user="{project.owner}" 
+        group="{project.usergroup}"
+        pageType="{f:cObject(typoscriptObjectPath:'lib.relax5core.ajax')}"
+        extensionName="Relax5project"
+        pluginName="Ajax" 
+        controller="Project"
+        arguments="{project: project}"
+      /></div>
+  </div>
+</div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Person/ShowHeader.html v8.6 -->

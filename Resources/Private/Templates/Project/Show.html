@@ -1,0 +1,37 @@
+{namespace rlx5=CGB\Relax5core\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+  <f:layout name="Default" />
+
+  <f:section name="main">
+
+    <span id="_appointmentuid" appointment="{appointment.uid}"></span>
+    
+    <fieldset class="rlx5-envelope-fieldset">
+      <legend id="rlx5-datatop" class="rlx5-focusperson">
+        <span>{project.uid}</span>
+        <f:if condition="{project.person}">
+          <span reference="person_{project.person.uid}_lastName">{project.person.lastName}</span>
+          <span reference="person_{project.person.uid}_firstName">{project.person.firstName}</span>: 
+        </f:if>
+        <f:if condition="{project.company}">
+          <span reference="company_{project.company.uid}_shortName">{project.company.shortName}</span>
+          <span reference="company_{project.company.uid}_name">{project.company.name}</span>: 
+        </f:if>
+        <span reference="project_{project.uid}_productgroup">{project.productgroup.name}</span>
+        <span reference="project_{project.uid}_product">{project.product.name}</span>
+      </legend>
+
+      <f:render partial="Project/ShowData" arguments="{_all}" />
+
+    </fieldset>
+
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/Project/Show.html v8.7</p>
+
+  </f:section>
+</html>
+  

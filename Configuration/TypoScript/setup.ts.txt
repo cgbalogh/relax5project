@@ -1,0 +1,83 @@
+
+plugin.tx_relax5project_project {
+    view {
+        templateRootPaths.0 = EXT:relax5project/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_relax5project_project.view.templateRootPath}
+        partialRootPaths.0 = EXT:relax5project/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_relax5project_project.view.partialRootPath}
+        layoutRootPaths.0 = EXT:relax5project/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_relax5project_project.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_relax5project_project.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plugin are uncached
+        requireCHashArgumentForActionArguments = 1
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+plugin.tx_relax5project._CSS_DEFAULT_STYLE (
+        textarea.f3-form-error {
+                background-color:#FF9F9F;
+                border: 1px #FF0000 solid;
+        }
+
+        input.f3-form-error {
+                background-color:#FF9F9F;
+                border: 1px #FF0000 solid;
+        }
+
+        .{extension.cssClassName} table {
+                border-collapse:separate;
+                border-spacing:10px;
+        }
+
+        .{extension.cssClassName} table th {
+                font-weight:bold;
+        }
+
+        .{extension.cssClassName} table td {
+                vertical-align:top;
+        }
+
+        .typo3-messages .message-error {
+                color:red;
+        }
+
+        .typo3-messages .message-ok {
+                color:green;
+        }
+)
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+
+page.includeCSS {
+   relax5projectCss = EXT:relax5project/Resources/Public/Styles/relax5project.css
+   relax5projectLess = EXT:relax5project/Resources/Public/Less/relax5project.less
+
+}
+
+page.includeJSFooter {
+  relax5projectJs = EXT:relax5project/Resources/Public/Scripts/relax5project.js
+  relax5projectJs.forceOnTop = 0
+}
+
+plugin.tx_relax5project_project {
+  settings {
+    personShowPid = {$plugin.tx_relax5core.settings.personShowPid}
+    companyShowPid = {$plugin.tx_relax5core.settings.companyShowPid}
+    projectShowPid = {$plugin.tx_relax5project_project.settings.projectShowPid}
+
+    timeHorizonIntervalList = {$plugin.tx_relax5project_project.settings.timeHorizonIntervalList}
+    timeHorizonFormat = {$plugin.tx_relax5project_project.settings.timeHorizonFormat}
+    timeHorizonQuarters = {$plugin.tx_relax5project_project.settings.timeHorizonQuarters}
+  }
+}

@@ -1,0 +1,147 @@
+<table class="stateInnerTable">
+  <f:for each="{state.responsibilities}" as="responsibility">
+    <tr>
+      <td class="tx_crmrelax5dfa-detail-date" style="font-weight: bold; color: #a00;">
+        {responsibility.due->f:format.date(format:'d.m.Y')}
+      </td>
+      <td class="tx_crmrelax5dfa-detail-date" style="font-weight: bold; color: #0a0;">
+        <f:if condition="{responsibility.due} && ! {responsibility.done} && ({responsibility.owner.uid} == {feUser.uid})">
+          <f:then>
+            
+            <span class="{f:if(condition:'{mockup}',then:'modalMessage',else:'modalDialog')} rlx5-projectstate-button rlx5-project-withappointment{transitionOut.allowWithAppointment} rlx5-enableon-{transitionOut.enableOnResult}_{transitionOut.enableOnNextAction}"
+              style="padding: 3px 6px;"
+              alt="{alt}" 
+              title="" 
+              onshow=""
+              onsave="window.location.reload();"
+              wwidth="700px"
+              savetext="Ok"
+              uri="{h:uri.ajaxAction(
+                  extensionName: 'Relax5project',
+                  controller: 'State',
+                  pluginName: 'Project',
+                  action: 'nextstate',
+                  arguments: '{project:project,thisstate:state,responsibility:responsibility}'
+                )}"
+              >
+              <f:image src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg"    />
+            </span>
+              
+          </f:then>
+          <f:else>
+            {responsibility.done->f:format.date(format:'d.m.Y')}
+          </f:else>
+        </f:if>  
+      </td>
+      <td>{responsibility.comments}</td>
+      <td>{responsibility.owner.username}</td>
+    </tr>
+    <!--
+    <f:if condition="({state.owner.uid} == {user.uid}) or ({responsibility.owner.uid} == {user.uid}) or 0{project.canwrite}">
+      <tr>
+        <td class="tx_crmrelax5dfa-detail-label" title="{responsibility.owner.firstName} {responsibility.owner.lastName} ({responsibility.owner.uid}) UID: {responsibility.uid}">
+          <f:if condition="{admin}">
+            <f:image class="modalDialog"
+              src="EXT:relax5core/Resources/Public/FeIcons/edit.png" 
+              alt="{f:translate(key:'tx_crmrelax5_domain_model_responsibility.edit')}" 
+              title="{f:translate(key:'tx_crmrelax5_domain_model_responsibility.edit')}" 
+              style="vertical-align: middle;"
+              additionalAttributes="{
+                extbaseajax: '
+                  action : \'editResponsibility\', 
+                  controller : \'State\', 
+                  pluginname: \'tx_crmrelax5dfa_dfa\',
+                  type: 1102,
+                  responsibility: {responsibility.uid}',
+                onshow: 'dfaInit();activateDatepicker();'
+                }" />
+            </f:if>
+          <f:image
+            src="EXT:relax5core/Resources/Public/FeIcons/contact_3.png"
+            title="E-mail an {state.owner.username} ({responsibility.owner.firstName} {responsibility.owner.lastName}) versenden"
+            alt=""
+            class="modalDialog"
+            style="vertical-align: middle;"
+            additionalAttributes="{
+              extbaseajax: '
+                action : \'email\', 
+                controller : \'Ajax\', 
+                scope: \'owner\',
+                mailTo : \'{responsibility.owner.uid}\' ', 
+              onsave : 'modalMessage(\'E-Mail\', \'Ihre Nachricht wurde gesendet!\', \'Ok\');'
+              savetext : 'Senden', 
+              closetext : 'Abbrechen'
+            }"
+          />&nbsp;
+          {responsibility.owner.username}
+        </td>
+        <td class="tx_crmrelax5dfa-detail-date" style="font-weight: bold; color: #a00;">
+          {responsibility.due->f:format.date(format:'d.m.Y')}
+        </td>
+        <td class="tx_crmrelax5dfa-detail-date" style="font-weight: bold; color: #0a0;">
+          <f:if condition="'{responsibility.due.timestamp}' && ! '{responsibility.done.timestamp}' && ('{responsibility.owner.uid}' == '{user.uid}')">
+            <f:then>
+              <f:image class="modalDialog overlayInTableCell"
+                src="EXT:relax5core/Resources/Public/FeIcons/done.png" 
+                alt="" 
+                title="Erledigt" 
+                additionalAttributes="{
+                  extbaseajax: '
+                    action: \'stateDialogue\', 
+                    controller: \'State\', 
+                    project: {project.uid},
+                    thisstate: {state.uid},
+                    nextstate: \'\',
+                    responsibility: {responsibility.uid},
+                    template: \'Done\',
+                    pluginname: \'tx_crmrelax5dfa_dfa\',
+                    type: 1102',
+                  text: 'Diese offene Anforderung als erledigt kennzeichnen?',
+                  onsave: 'requestSingleProjectData( {project.uid}, \'\', 1 );activateModalDialog();clickButton(\'Ok\')',
+                  onshow: 'dfaInit();controllerScript();localFilesEnabler();'
+                }" />
+              <f:if condition="{project.canNewAppointment}">
+                <f:image class="modalDialog"
+                  src="EXT:relax5core/Resources/Public/FeIcons/new_appointment.png" 
+                  alt="{f:translate(key:'tx_crmrelax5dfa_domain_model_project.add_appointment')}" 
+                  title="{f:translate(key:'tx_crmrelax5dfa_domain_model_project.add_appointment')}" 
+                  additionalAttributes="{
+                    extbaseajax: '
+                      action : \'newAppointment\', 
+                      controller : \'State\', 
+                      project: {project.uid},
+                      state: {state.uid},
+                      owner: \'{responsibility.owner.uid}\',
+                      lockPosition: 1,
+                      phase: \'{phase}\',
+                      pluginname: \'tx_crmrelax5dfa_dfa\',
+                      type: 1102',
+                    savetext: 'Speichern',
+                    closetext: 'Abbrechen',
+                    onshow: 'activateDatetimepicker();dfaInit();activateImgDD();',
+                    onsave: 'requestSingleProjectData( {project.uid}, \'{appointment.uid}\', 1 );'
+                  }" />
+              </f:if>
+
+            </f:then>
+            <f:else>
+              <f:if condition="{responsibility.done}">
+                <f:then>
+                  {responsibility.done->f:format.date(format:'d.m.Y')}
+                </f:then>
+                <f:else>
+                  <f:image src="EXT:relax5core/Resources/Public/FeIcons/warning.png" title="Erledigung ausständig" alt=""/>
+                </f:else>
+              </f:if>
+            </f:else>
+          </f:if>
+        </td>
+        <td class="tx_crmrelax5dfa-detail-data">
+          {responsibility.comments}
+        </td>
+      </tr>
+    </f:if>
+    -->
+  </f:for>
+</table>				
+

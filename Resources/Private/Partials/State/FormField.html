@@ -1,0 +1,194 @@
+{namespace r5f=CGB\Relax5validator\ViewHelpers}
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<div class="rlx5-project-fieldwrapper">
+  <f:switch expression="{input.type}">
+    <f:case value="textfield">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+      <r5f:form.textfield 
+        id="input_{input.uid}" 
+        name="data[{input.id}]" 
+        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate})}"
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" 
+        additionalAttributes="{errorproperty:'data.data[{input.id}]'}"
+      /><br />
+    </f:case>
+
+    <f:case value="textarea">
+      <label for="input_{input.uid}" class="rlx5-top" title="{input.description}">
+          {input.name}
+      </label>
+      <span id="input_{input.uid}"></span> 
+      <r5f:form.textarea 
+        name="data[{input.id}]" 
+        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate})}"
+        class="rlx5-jte" 
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" 
+      /><br />
+    </f:case>
+
+    <f:case value="checkbox">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+      <f:form.checkbox 
+        id="input_{input.uid}" 
+        name="data[{input.id}]" 
+        value="1" 
+        checked="{r5p:options(options:input.options,result:'value',key:'checked',data:{project:project,thisstate:thisstate})}"
+      /><br />
+    </f:case>
+
+    <f:case value="optiongroup">
+      <label for="input_{input.uid}" class="rlx5-top" title="{input.description}">
+          {input.name}
+      </label>
+      <span class="rlx5-span-as-input">
+        <f:for each="{r5p:options(options:input.options,result:'array',key:'options')}" key="value" as="label">
+          <f:form.radio id="input_{input.uid}_{value}" name="data[{input.id}]" value="{value}" checked="{f:if(condition: \"{value}=={r5p:options(options:input.options,result:'value',key:'value',data:{project:project})}\", then: \"1\")}" />
+          <label for="input_{input.uid}_{value}" class="rlx5-min" style="font-weight: normal; line-height: normal;">{label}</label><br />
+        </f:for>
+      </span>
+    </f:case>
+
+    <f:case value="dropdown">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+
+      <r5f:form.select 
+        id="input_{input.uid}"
+        options="{r5p:options(options:input.options,result:'list',key:'selectoptions')}"
+        optionValueField="value"
+        optionLabelField="label"
+        name="data[{input.id}]"
+        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate})}"
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}"
+        additionalAttributes="{errorproperty:'data.data[{input.id}]'}"
+      /><br />
+    </f:case>
+
+    <f:case value="dropdownFromRepository">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+
+      <r5f:form.select 
+        id="input_{input.uid}"
+        options="{r5p:options(options:input.options,result:'selectFromRepository',key:'selectoptions',data:{project:project,thisstate:thisstate})}"
+        optionValueField="{r5p:options(options:input.options,key:'optionValueField')}"
+        optionLabelField="{r5p:options(options:input.options,key:'optionLabelField')}"
+        sortByOptionLabel="{r5p:options(options:input.options,key:'sortByOptionLabel')}"
+        prependOptionLabel="{r5p:options(options:input.options,key:'prependOptionLabel')}"
+        prependOptionValue="{r5p:options(options:input.options,key:'prependOptionValue')}"
+        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate, appointment:appointment,feUserUid:feUserUid})}"
+        name="data[{input.id}]"
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}"
+        additionalAttributes="{errorproperty:'data.data[{input.id}]'}"
+      /><br />
+    </f:case>
+
+    <f:case value="datepicker">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+      <r5f:form.textfield 
+        id="input_{input.uid}" 
+        name="data[{input.id}]" 
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" 
+        class="datepicker" 
+        value="{r5p:options(options:input.options, result:'value', key:'value', data:{project:project,thisstate:thisstate, appointment:appointment})->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.date_format\')}' )}"
+        additionalAttributes="{
+          errorproperty:'data.data[{input.id}]',
+          mindate: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'mindate\')}', 
+          maxdate: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'maxdate\')}', 
+          workingdays: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'workingdays\')}'
+        }"
+      /><br />
+    </f:case>
+
+    <f:case value="datetimepicker">
+      <label for="input_{input.uid}" title="{input.description}">
+          {input.name}
+      </label>
+
+      <r5f:form.textfield 
+        id="input_{input.uid}" 
+        name="data[{input.id}]" 
+        validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" 
+        class="datetimepicker" 
+        additionalAttributes="{
+          errorproperty:'data.data[{input.id}]',
+          mindate: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'mindate\')}', 
+          maxdate: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'maxdate\')}', 
+          workingdays: '{r5p:options(options:input.options, result: \'singleoptionvalue\', key: \'workingdays\')}'
+        }"
+      /><br />
+    </f:case>
+
+    <f:case value="execute"></f:case>
+    <f:case value="email"></f:case>
+
+    <f:case value="appointment">
+      <!--
+      <f:form.hidden name="data[__mapdata]" value="appointment,permissions,subject,date,duration,appointmentType,appointmentStatus,appointmentPriority,address,contact,name,details" />
+      -->
+      <f:alias map="{appointment:'{r5p:options(options:input.options,result:\'appointment\',key:\'appointment\',data:{project:project,thisstate:thisstate})}'}">
+        <f:render partial="Appointment/FormFields" arguments="{_all}" />
+        <script>
+          // reusing template from relax5core needs to modify the name attribute to [match ]data]
+          $('[name=tx_relax5project_project\\[state\\]\\[subject\\]]').attr('name', 'tx_relax5project_project[data][subject]');
+          $('[name=tx_relax5project_project\\[state\\]\\[date\\]]').attr('name', 'tx_relax5project_project[data][date]');
+          $('[name=tx_relax5project_project\\[state\\]\\[duration\\]]').attr('name', 'tx_relax5project_project[data][duration]');
+          $('[name=tx_relax5project_project\\[state\\]\\[appointmentType\\]]').attr('name', 'tx_relax5project_project[data][appointmentType]');
+          $('[name=tx_relax5project_project\\[state\\]\\[appointmentStatus\\]]').attr('name', 'tx_relax5project_project[data][appointmentStatus]');
+          $('[name=tx_relax5project_project\\[state\\]\\[piority\\]]').attr('name', 'tx_relax5project_project[data][piority]');
+          $('[name=tx_relax5project_project\\[state\\]\\[address\\]]').attr('name', 'tx_relax5project_project[data][address]');
+          $('[name=tx_relax5project_project\\[state\\]\\[contact\\]]').attr('name', 'tx_relax5project_project[data][contact]');
+          $('[name=tx_relax5project_project\\[state\\]\\[name\\]]').attr('name', 'tx_relax5project_project[data][name]');
+          $('[name=tx_relax5project_project\\[state\\]\\[details\\]]').attr('name', 'tx_relax5project_project[data][details]');
+        </script>
+      </f:alias>
+    </f:case>
+
+    <f:case value="address">
+      <f:alias map="{validatorContext:'{f:if(condition:\'{nextstate}\',then:\'Nextstate_{nextstate.uid}\',else:\'Transition_{transitionOut.uid}\')}'}"> 
+        <f:render partial="Address/FormFieldsProject" arguments="{address:project.address, validatorContext:validatorContext}" />
+      </f:alias>
+    </f:case>
+    
+    <f:case value="products">
+      <div id="project_product_wrap">
+        <f:render partial="Productgroup/Product" arguments="{_all}" />
+      </div>
+    </f:case>
+
+    <f:case value="text">
+      <label class="rlx5-top" title="{input.description}">
+        {input.name}
+      </label>
+      <span class="rlx5-span-as-input" style="border: 1px solid #aaaaaa;">
+        <f:format.html>{input.options}</f:format.html>
+      </span>
+    </f:case>
+
+    <f:case value="hidden">
+      <f:form.hidden name="data[{input.id}]" value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate})}" />
+    </f:case>
+
+    <f:defaultCase>
+      {input.type} is not yet implemented!<br />
+    </f:defaultCase>
+
+  </f:switch>
+</div>
+
+<f:if condition="{input.jscript}">
+  <script type="text/javascript" class="extbase_ajax_script">
+    <f:format.cdata>
+      {input.jscript}
+    </f:format.cdata>
+  </script>
+</f:if>  

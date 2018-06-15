@@ -1,0 +1,77 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<span data-autocomplete-uri="{h:uri.ajaxAction(extensionName:'Relax5core',controller:'Address',pluginName:'Core',action:'autocomplete')}"></span>
+
+<div>
+  <f:for each="{transitionOut.actions}" as="action">
+    <f:for each="{action.inputs}" as="input">
+      <f:comment>{input}</f:comment>
+      <f:render partial="State/FormField" arguments="{_all}" />
+    </f:for>
+  </f:for>
+</div>
+
+<div>
+  <f:for each="{nextstate.transitionIns}" as="transitionIn">
+    <f:if condition="{transitionIn.nextstate.uid}=={thisstate.state.uid}">
+      <f:for each="{transitionIn.actions}" as="action">
+        <f:for each="{action.inputs}" as="input">
+          <f:comment>{input}</f:comment>
+          <f:render partial="State/FormField" arguments="{_all}" />
+        </f:for>
+      </f:for>
+    </f:if>
+  </f:for>
+</div>
+
+<f:if condition="{responsibility}">
+  <h4>Auf Ok klicken, um diesen Punkt als erledigt zu markeiren!</h4>
+  <f:form.hidden name="responsibility[__identity]"  value="{responsibility.uid}" />
+</f:if>
+
+
+<!-- context for relax5validator -->
+<f:form.hidden name="data[__context]" value="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" />
+<f:form.hidden name="data[__nextstate]" value="{nextstate}" />
+
+<f:form.hidden id="_appointment" name="appointment[__identity]" />
+
+<f:form.hidden id="_result" name="data[__result]" />
+<f:form.hidden id="_nextAction" name="data[__nextAction]" />
+<f:form.hidden id="_details" name="data[__details]" />
+
+
+
+<!-- works only within modal dialog window -->
+<script type="text/javascript">
+  <f:format.cdata>
+    $(document).ready(function() {
+      activateJte('.rlx5-jte', '.rlx5-form');
+      activateDatepicker();
+      activateDatetimepicker();
+      showErrors();
+      
+      $('#_result').val($('[name=tx_relax5project_project\\[appointment\\]\\[result\\]]').filter(':checked').val());
+      $('#_nextAction').val($('[name=tx_relax5project_project\\[appointment\\]\\[nextAction\\]]').filter(':checked').val());
+
+      $('#_details').val($('[name=tx_relax5project_project\\[appointment\\]\\[details\\]]').val());
+
+      if ($('[name=tx_relax5project_project\\[appointment\\]\\[checkappointment\\]]').filter(':checked').val()) {
+        // appointment = $('[name=tx_relax5project_project\\[appointment\\]\\[checkappointment\\]]').filter(':checked').val();
+        $('#_appointment').val(
+          $('[name=tx_relax5project_project\\[appointment\\]\\[checkappointment\\]]').filter(':checked').val()                
+        );
+        
+      } else {
+        $('#_appointment').detach();
+      }
+      
+      
+      $('.data-errorproperty').each(function(){
+        var errorproperty = $(this).attr('data-errorproperty');
+        $('[errorproperty="' + errorproperty + '"]').addClass('f3-form-error');
+      });
+      
+    });
+  </f:format.cdata>
+</script>

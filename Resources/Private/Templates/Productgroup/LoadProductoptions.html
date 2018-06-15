@@ -1,0 +1,15 @@
+  <f:if condition="{product.subproducts}">
+    <div class="rlx5-clearer" style="margin: .5em 0; border-bottom: 1px solid #999;"></div>    
+    <f:render partial="Productgroup/Subproducts" arguments="{project:project,productgroups:productgroups,products:products,subproducts:product.subproducts,prefix:'tx_relax5project_project[subproducts]',statusOptions:statusOptions}" />
+  </f:if>
+  <f:render partial="Productgroup/Productoptions" arguments="{project:project,productgroups:productgroups,products:products,productoptions:product.productoptions,prefix:'tx_relax5project_project[productoptions]'}" />
+
+  <div class="rlx5-clearer" style="margin: .5em 0; border-bottom: 1px solid #999;"></div>
+
+  <f:render partial="Productgroup/Productoptions" arguments="{project:project,productgroups:productgroups,products:products,productoptions:productgroup.productoptionsFull,prefix:'tx_relax5project_project[productoptions]'}" />
+
+
+<script>
+  checkProductoptions();
+  validateProductoptions();
+</script>

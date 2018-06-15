@@ -1,0 +1,32 @@
+{namespace rlx5=CGB\Relax5core\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="main">
+    
+    <span class="_proceedAppointments" proceedAppointments="{h:uri.ajaxAction(extensionName: 'Relax5project', controller: 'Appointment', pluginName: 'Project', action: 'processAppointment')}"></span>
+    <span class="_loadProjects" loadprojects="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Project', action: 'list', arguments: {newpage:1})}"></span>
+    <f:render partial="Project/ProjectList" arguments="{item:project.person, focus:'person', projects:projects, newpage:newpage,load:load,person:person,company:company}" />
+
+    <div id="proceedAppointment">
+      
+    </div>
+    
+  </f:section>
+
+</html>

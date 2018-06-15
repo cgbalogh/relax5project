@@ -1,0 +1,20 @@
+
+config.tx_extbase {
+  persistence {
+    classes {
+
+      CGB\Relax5core\Domain\Model\Appointment {
+        subclasses {
+          # Tx_Relax5project_Appointment = CGB\Relax5project\Domain\Model\Appointment
+        }
+      }
+      CGB\Relax5project\Domain\Model\Appointment {
+        mapping {
+          tableName = tx_relax5core_domain_model_appointment
+          recordType = Tx_Relax5project_Appointment
+        }
+      }
+
+    }
+  }
+}

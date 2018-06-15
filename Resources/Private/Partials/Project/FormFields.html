@@ -1,0 +1,29 @@
+<f:render partial="General/ShowInfo" arguments="{item:project, itemtype:'project'}" />
+
+<div class="rlx5-collapser">
+  &nbsp;<span class="texticon-inner-icon ion ion-chevron-down"></span>&nbsp;
+</div>
+<div class="rlx5-info rlx5-clearfix rlx5-collapsible rlx5-collapsed" style="border-bottom: 3px solid #99b2d3; margin-bottom: 8px;">
+  <span>&nbsp;</span>
+
+  <span>
+    <f:form.select property="owner" options="{ownerSelect}" optionLabelField="username" optionValueField="uid" size="1" style="width: 100%;" />
+  </span>
+
+  <span>
+    <f:form.select property="usergroup" options="{usergroupSelect}" optionLabelField="title" optionValueField="uid" size="1" style="width: 100%;" />
+  </span>
+
+  <span style="white-space: nowrap;" class="rlx5-rightsarray">
+    <f:form.checkbox value="1" title="Owner read" /><f:form.checkbox value="1"  title="Owner write" /><f:form.checkbox value="1"  title="Owner delete" />
+<br class="rlx5-smallonly" /><f:form.checkbox value="1"  title="Group read" /><f:form.checkbox value="1"  title="Group write" /><f:form.checkbox value="1"  title="Group delete" />
+<br class="rlx5-smallonly" /><f:form.checkbox value="1"  title="Everybody read" /><f:form.checkbox value="1"  title="Everybody write" /><f:form.checkbox value="1"  title="Everybody delete" />
+    <f:form.hidden property="permissions" id="rlx5-permissions" />
+  </span>
+</div>
+
+<label>
+  &nbsp;
+</label>
+&nbsp;<br />
+

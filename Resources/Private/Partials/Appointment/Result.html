@@ -1,0 +1,15 @@
+
+<label>
+    <f:translate key="LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result" />
+</label>
+
+<div>
+  <f:for each="{1:1,2:2,3:3,4:4,5:5,6:6,7:7,8:8,9:9,10:10}" as="index">
+    <span resultelement="{index}">
+      <f:form.radio id="result_{index}" name="tx_relax5project_project[appointment][result]" checked="{appointment.result}" value="{index}" />
+      <label for="result_{index}" class="rlx5-min" style="font-weight: normal; line-height: normal;">
+        <f:translate key="LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result.{index}" />
+      </label><br />
+    </span>
+  </f:for>
+</div>

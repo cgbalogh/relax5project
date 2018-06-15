@@ -1,0 +1,246 @@
+<table class="rlx5-project-statetable">
+  <thead>
+    <tr>
+      <th>
+        <f:translate key="tx_relax5project_domain_model_transitionpool.name" />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_project_owner' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_state_owner' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_parent_owner' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_once' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_current_state_only' />"
+        />        
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_forwarded' />"
+        />        
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_with_appointment' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.deny_if_done' />"
+        />
+      </th>
+
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.debug' />"
+        />
+      </th>
+
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.enable_on_result' />"
+        />
+      </th>
+
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.enable_on_next_action' />"
+        />
+      </th>
+      
+      <th class="rlx5-c">
+        <f:image 
+          src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+          title="<f:translate key='tx_relax5project_domain_model_transitionpool.global' />"
+        />
+      </th>
+    </tr>
+  </thead>
+  
+  <tfoot>
+    
+  </tfoot>
+  
+  <tbody>
+    <f:for each="{transitions}" as="transition">
+      <tr>
+        <td>
+          <f:image src="{transition.button.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+          {transition.name}
+          <ul>
+            <f:if condition="{transition.nextstate}">
+              <li>=> {transition.nextstate.uid} {transition.nextstate.name}</li>
+            </f:if>
+            <f:for each="{transition.actions}" as="action">
+              <li title="{action.actions}">
+                {action.name}
+                <ul>
+                  <f:for each="{action.inputs}" as="input">
+                    <li title="{input.options}">{input.name} ({input.id} {input.type})</li>
+                  </f:for>
+                </ul>
+              </li>
+            </f:for>
+          </ul>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowProjectOwner}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_project_owner' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowStateOwner}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_state_owner' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowParentOwner}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_parent_owner' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowOnce}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_once' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowCurrentStateOnly}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_current_state_only' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowForwarded}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_forwarded' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.allowWithAppointment}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.allow_with_appointment' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.denyIfDone}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.deny_if_done' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.debug}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.debug' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-c">
+          <f:if condition="{transition.enableOnResult}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.enable_on_result' />"
+            />
+          </f:if>
+        </td>
+
+        <td class="rlx5-c">
+          <f:if condition="{transition.enableOnNextAction}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.enable_on_next_action' />"
+            />
+          </f:if>
+        </td>
+        
+        <td class="rlx5-l">
+          <f:if condition="{transition.global}">
+            <f:image 
+              src="EXT:core/Resources/Public/Icons/T3Icons/actions/actions-check.svg" 
+              title="<f:translate key='tx_relax5project_domain_model_transitionpool.global' />"
+            />
+          </f:if>
+        </td>
+
+        <td class="rlx5-l">
+          {transition.conditionExpression}
+        </td>
+        
+        <td class="rlx5-l">
+          {transition.conditionMode}
+        </td>
+
+        <td class="rlx5-l">
+          {transition.conditionMessage}
+        </td>
+        
+      </tr>
+    </f:for>
+  </tbody>
+</table>
+
+

@@ -1,0 +1,71 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Project/ShowData.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+<f:if condition="{project.uid}">
+  <span class="_loadProducts" loadproducts="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Productgroup', action: 'loadProducts')}"></span>
+  <span class="_loadProductoptions" loadproductoptions="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Productgroup', action: 'loadProductoptions', arguments:'{project: project}')}"></span>
+  <span class="_moveProject" moveproject="{h:uri.ajaxAction(extensionName: 'Relax5project', pluginName: 'Project', controller: 'Project', action: 'moveProject')}"></span>
+</f:if>
+ 
+
+<div class="rlx5-project-data-box-outer rlx5-project-datagrid-container">
+  <f:render partial="General/ShowInfo" arguments="{item:project, itemtype:'project'}" />
+  <f:if condition="{project.uid}">
+  <f:render partial="Project/ShowHeader" arguments="{_all}" />    
+  </f:if>
+
+  <div class="rlx5-projectgrid-data">
+    <f:render partial="Project/ShowProjectData" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-product">
+    <f:render partial="Project/ShowProductData" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-states">
+    <f:render partial="State/ShowStates" arguments="{_all}" />
+  </div>
+  
+  <f:if condition="{project.person}">
+    <f:render partial="General/ShowInfo" arguments="{item:project.person, itemtype:'person'}" />
+    <f:render partial="Person/ShowHeader" arguments="{person:project.person}" />  
+    <span data-pagetitle="{project.person.lastName} {project.person.firstName}"></span>
+  </f:if>
+
+  <f:if condition="{project.company} && !{project.person}">
+    <f:render partial="General/ShowInfo" arguments="{item:project.company, itemtype:'company'}" />
+    <f:render partial="Company/ShowHeader" arguments="{company:project.company}" />    
+    <span data-pagetitle="{project.company.shortName} {project.company.name}"></span>
+  </f:if>
+
+  <f:if condition="{project.person}">
+    <div class="rlx5-projectgrid-parent">
+      <f:render partial="Person/ShowRelations" arguments="{person:project.person,showcontacts:1}" />
+      <f:render partial="Address/ShowAddresses" arguments="{item:project.person}" />
+      <f:render partial="Contact/ShowContacts" arguments="{item:project.person}" />
+      <f:render partial="Link/ShowLinks" arguments="{item:project.person, focus:'person'}" />
+      <f:render partial="General/ShowExtra" arguments="{item:project.person, focus:'person'}" />
+
+      <f:if condition="{project.person}">
+        <f:render partial="Project/ProjectList" arguments="{person:project.person, load:1,item:project.person, focus:'person', projects:'<r5p:projects item=\'{project.person}\' />'}" />
+      </f:if>
+    </div>
+  </f:if>
+  
+  
+  <f:if condition="{project.company} && !{project.person}">  
+    <div class="rlx5-projectgrid-parent">
+      <f:render partial="Company/ShowRelations" arguments="{company:project.company,showcontacts:1}" />
+      <f:render partial="Address/ShowAddresses" arguments="{item:project.company}" />
+      <f:render partial="Contact/ShowContacts" arguments="{item:project.company}" />
+      <f:render partial="Link/ShowLinks" arguments="{item:project.company, focus:'company'}" />
+      <f:render partial="General/ShowExtra" arguments="{item:project.company, focus:'company'}" />
+
+      <f:if condition="{project.company}">
+        <f:render partial="Project/ProjectList" arguments="{company:project.company, load:1,item:project.company, focus:'company', projects:'<r5p:projects item=\'{project.company}\' />'}" />
+      </f:if>
+    </div>
+  </f:if>
+</div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Project/ShowData.html v8.7 -->

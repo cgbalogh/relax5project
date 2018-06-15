@@ -1,0 +1,56 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+  <f:section name="main">
+    <div class="rlx5-modalform-stretcher" style="height: 0; min-width: 700px;"></div>  
+
+    <div id="rlx5statepool-tabs">
+      <ul>
+        <li><a href="#rlx5statepool-data"><span><f:translate key="tx_relax5project_domain_model_statepool" /></span></a></li>
+        <li><a href="#rlx5statepool-transition_ins"><span><f:translate key="tx_relax5project_domain_model_statepool.transition_ins" /></span></a></li>
+        <li><a href="#rlx5statepool-transition_outs"><span><f:translate key="tx_relax5project_domain_model_statepool.transition_outs" /></span></a></li>
+      </ul>
+      <div id="rlx5statepool-data">
+        <f:render partial="StatePool/Properties" arguments="{statePool:statePool}" />
+      </div>
+
+      <div id="rlx5statepool-transition_ins">
+        <f:render partial="StatePool/Transitions" arguments="{transitions:statePool.transitionIns}" />
+      </div>
+
+      <div id="rlx5statepool-transition_outs">
+        <f:render partial="StatePool/Transitions" arguments="{transitions:statePool.transitionOuts}" />
+      </div>
+    </div>
+
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/StatePool/Show.html v8.7</p>
+
+    <!-- works only within modal dialog window -->
+    <script type="text/javascript">
+      <f:format.cdata>
+        $(document).ready(function() {
+          $( "#rlx5statepool-tabs" ).tabs();
+        });
+      </f:format.cdata>
+    </script>
+    
+  </f:section>
+
+</html>
+
+
+
+
+      
+    

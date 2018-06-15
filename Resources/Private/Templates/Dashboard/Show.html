@@ -1,0 +1,27 @@
+{namespace rlx5=CGB\Relax5core\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+  <f:layout name="Default" />
+
+  <f:section name="main">
+
+    <span id="_appointmentuid" appointment="{appointment.uid}"></span>
+    
+    <fieldset class="rlx5-envelope-fieldset">
+      <legend id="rlx5-datatop" class="rlx5-focusperson">
+        <span>Dashboard: {user.firstName} {user.lastName} ({user.uid} - {user.username})</span>
+      </legend>
+
+      <f:render partial="Dashboard/Show" arguments="{_all}" />
+
+    </fieldset>
+
+    <p class="footnote">docref: EXT:relax5project/Resources/Private/Templates/Dashboard/Show.html v8.7</p>
+
+  </f:section>
+</html>
+  

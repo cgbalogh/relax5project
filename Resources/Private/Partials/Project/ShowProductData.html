@@ -1,0 +1,33 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<div class="rlx5-item-project-product rlx5-{itemtype} rlx5-core-data-box">
+  <table class="tx-relax5project">
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_productgroup" /></td>
+      <td colspan="2">{project.productgroup.name}</td>
+    </tr>
+    <tr>
+      <td><f:translate key="tx_relax5project_domain_model_product" /></td>
+      <td colspan="2">{project.product.name}</td>
+    </tr>
+    
+    <f:for each="{project.mappings}" as="mapping">
+      <tr>
+        <f:if condition="{mapping.productoption}">
+          <td>{mapping.productoption.labeltext}</td>
+        </f:if>
+        <f:if condition="{mapping.subproduct}">
+          <td>{mapping.subproduct.name}</td>
+        </f:if>
+        <f:if condition="{mapping.productoption}">
+          <td colspan="2">{mapping.value}</td>
+        </f:if>
+        <f:if condition="{mapping.subproduct}">
+          <td>{mapping.availableItem.name}</td>
+          <td>{mapping.statusText}&nbsp;</td>
+        </f:if>
+      </tr>
+    </f:for>
+
+  </table>
+</div>

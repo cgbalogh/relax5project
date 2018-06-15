@@ -1,0 +1,478 @@
+{namespace rlx5=CGB\Relax5core\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace addinfo=CGB\Relax5addinfo\ViewHelpers}
+
+<f:layout name="Default" />
+
+<f:section name="main">
+
+  <p style="text-align: right">
+    <a href=""#" onclick="javascript:window.print();">Drucken</a>
+  </p>
+
+  <f:if condition="{mode}=='print'">
+    <f:if condition="{project.person}">
+      <h1 class="person">{project.person.firstName} {project.person.lastName}</h1>
+    </f:if>
+    <f:if condition="{project.company}">
+      <h1 class="company">{project.company.name}<br />{project.company.shortName}</h1>
+    </f:if>
+    <div class="clearer"></div>
+
+    <f:if condition="{project.person}">
+      <table class="headerdata">
+        <tr>
+          <td>{project.person.uid}</td>
+          <td>{project.person.owner.username}</td>
+          <td>{project.person.usergroup.title}</td>
+          <td>{project.person.crdate->f:format.date(format: 'd.m.Y')}</td>
+          <td>{project.person.tstamp->f:format.date(format: 'd.m.Y')}</td>
+        <tr>
+      </table>
+
+      <table class="propertylist nowrap">
+        <tr>
+          <td>Familienname</td>
+          <td>{project.person.lastName}</td>
+        </tr>
+        <tr>
+          <td>Vorname</td>
+          <td>{project.person.firstName}</td>
+        </tr>
+        <tr>
+          <td>Weitere Namen</td>
+          <td>{project.person.middleName}</td>
+        </tr>
+        <tr>
+          <td>Titel</td>
+          <td>{project.person.title}</td>
+        </tr>
+        <tr>
+          <td>Anrede</td>
+          <td>{project.person.salutation}</td>
+        </tr>
+        <tr>
+          <td>Geschlecht</td>
+          <td>
+            <f:image 
+              id="genderImg_{person.uid}"
+              src="EXT:relax5core/Resources/Public/Icons/gender_{project.person.gender}.png" 
+              alt="" 
+              title="{f:translate(key:'tx_relax5core_domain_model_person.gender_{project.person.gender}')}" 
+              style="vertical-align: middle;" 
+          />
+          </td>
+        </tr>
+        <tr>
+          <td><f:translate key="LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_person.date_of_birth" /></td>
+          <td>{project.person.dateOfBirth->f:format.date(format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_general.datetime_format\')}')}</td>
+        </tr>
+        <tr>
+          <td><f:translate key="LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_person.marital_state" /></td>
+          <td>
+            <f:translate key="LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_person.marital_state.{project.person.maritalState}" />
+          </td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td>
+            {project.person.status.name}
+          </td>
+        </tr>
+        <tr>
+          <td>Zusendung erlauben</td>
+          <td>
+            <f:if condition="'{project.person.allowMail}'==0">nein</f:if>
+            <f:if condition="'{project.person.allowMail}'==1">ja</f:if>
+          </td>
+        </tr>
+        <tr>
+          <td>Quelle</td>
+          <td>{project.person.source.name}</td>
+        </tr>
+        <tr>
+          <td>Quelledetail</td>
+          <td>{project.person.sourceDetail.name}</td>
+        </tr>
+        <tr>
+          <td>Kommentare</td>
+          <td style="white-space: normal;">{project.person.comments}</td>
+        </tr>
+
+        <f:if condition="{project.person.relations}">
+          <f:for each="{project.person.relations}" as="relation" iteration="itemIteration">				
+            <tr>
+              <td>
+                <f:if condition="{itemIteration.index}==0">
+                  Beziehungen
+                </f:if>
+              </td>
+              <td style="white-space: normal;">{relation.targetPerson.firstName} {relation.targetPerson.lastName}
+                <f:translate key='LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_relation.is' />
+                <f:translate key='LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_relation.type.{relation.type}.{relation.targetPerson.gender}' /> 
+                <f:translate key='LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_relation.of' />
+                {project.person.firstName} {project.person.lastName}</td>
+            </tr>
+          </f:for>
+        </f:if>
+      </table>
+    </f:if>
+    
+    <f:if condition="{project.person}">
+        <div class="box person">
+            <div class="inner">
+                <h2>Adressen</h2>
+                <table class="full nowrap">
+                    <thead>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>Land</td>
+                            <td>Plz</td>
+                            <td>Ort</td>
+                            <td>Anschrift</td>
+                            <td></td>
+                            <td style="text-align:center;">Z</td>
+                        </tr>
+                    </thead>
+                    <f:for each="{project.person.addresses}" as="address">
+                        <tr style="{f:if(condition: '{address.allowMail} == 1', then: 'font-weight: bold;')}">
+                            <td><f:image src="EXT:crm_relax5/Resources/Public/FeIcons/addresspriority_Person_{address.priority}.png" alt="" style="vertical-align: middle;" /></td>							
+                            <td>{address.country}</td>
+                            <td>{address.zip}</td>
+                            <td>{address.city}</td>
+                            <td>
+                                {address.address} 
+                                <f:if condition="{address.number}">
+                                    {address.number}
+                                </f:if>
+                                <f:if condition="{address.number}">
+                                    {address.numberAdditions}
+                                </f:if>
+
+                                <f:if condition="'{address.description}'<>''">
+                                    <br />{address.description}
+                                </f:if>
+
+                            </td>
+                            <td>
+                                <f:if condition="'{address.priority}'==3">Baugrund</f:if>
+                            </td>
+                            <td style="text-align:center;">
+                                <f:if condition="'{address.allowMail}'==0">nein</f:if>
+                                <f:if condition="'{address.allowMail}'==1">ja</f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </table>
+            </div>
+        </div>
+    </f:if>
+      
+    <f:if condition="{project.person}">
+        <div class="box person">
+            <div class="inner">
+                <h2>Kontakte</h2>
+                <table class="full nowrap">
+                    <f:for each="{project.person.contacts}" as="contact">
+                        <tr>
+                            <td>
+                              <f:image src="{contact.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                            </td>
+                            <td>{contact.contact}</td>
+                            <td>{contact.description}</td>
+                            <td></td>
+                        </tr>
+                    </f:for>
+                </table>
+            </div>
+        </div>
+    </f:if>
+    <div class="clearer"></div>
+      
+      <div class="box full">
+          <div class="inner">
+              <h2>Projekt</h2>
+              <table class="propertylist nowrap">
+                  <tr>
+                      <td>Produktgruppe</td>
+                      <td>{project.productgroup.name}</td>
+                  </tr>
+                  <tr>
+                      <td>Produkt</td>
+                      <td>{project.product.name}</td>
+                  </tr>
+                  <tr>
+                      <td>Produktoptionen</td>
+                      <td>
+                          <f:for each="{project.mappings}" as="mapping">
+                              {mapping.name}<br />
+                          </f:for>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Status</td>
+                      <td>{project.currentState.state.name}</td>
+                  </tr>
+                  <tr>
+                      <td>Projektadresse</td>
+                      <td>
+                          <f:image src="EXT:crm_relax5/Resources/Public/FeIcons/addresspriority_Person_{project.address.priority}.png" alt="" style="vertical-align: middle;" />
+                          {project.address.country}
+                          {project.address.zip}
+                          {project.address.city}
+                          {project.address.address} 
+                          <f:if condition="{address.number}">
+                              {project.address.number}
+                          </f:if>
+                          <f:if condition="{address.number}">
+                              {project.address.numberAdditions}
+                          </f:if>
+                          {project.address.description}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>Geographische Breite:</td>
+                      <td>{project.address.lat}</td>
+                  </tr>
+                  <tr>
+                      <td>Geographische Länge:</td>
+                      <td>{project.address.lon}</td>
+                  </tr>
+                  <tr>
+                      <td>Beschreibung</td>
+                      <td style="white-space: normal;">
+                          {project.address.description}
+                      </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </f:if>
+    
+    <f:if condition="'{view}'=='nav'">
+      <div class="box full">
+          <div class="inner">
+              <h2>Wegbeschreibung</h2>
+              <table class="propertylist nowrap">
+                  <tr>
+                      <td>Name</td>
+                      <td>{project.person.firstName} {project.person.lastName}</td>
+                  </tr>
+                  <tr>
+                      <td>Adresse</td>
+                      <td>
+                          <f:image src="EXT:crm_relax5/Resources/Public/FeIcons/addresspriority_Person_{project.address.priority}.png" alt="" style="vertical-align: middle;" />
+                          {project.address.country}
+                          {project.address.zip}
+                          {project.address.city}
+                          {project.address.address} 
+                          <f:if condition="{project.address.number}">
+                              {project.address.number}
+                          </f:if>
+                          <f:if condition="{project.address.number}">
+                              {project.address.numberAdditions}
+                          </f:if>
+                          {project.address.description}
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>Kontaktmöglichkeiten privat</td>
+                    <td>
+                      <f:for each="{project.person.contacts}" as="contact">
+                        <f:image src="{contact.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                        {contact.type.name}
+                        {contact.contact}
+                        {contact.description}<br />
+                      </f:for>
+                      
+                      <f:for each="{project.person.contacts}" as="contact">
+                          <f:image src="{contact.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                          {contact.contact}
+                          {contact.description}<br />
+                      </f:for>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Kontaktmöglichkeiten Firma</td>
+                    <td>
+                      <f:for each="{project.company.contacts}" as="contact">
+                          <f:image src="{contact.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                          {contact.contact}
+                          {contact.description}<br />
+                      </f:for>
+                    </td>
+                  </tr>
+                  <f:for each="{project.roles}" as="role">
+                    <tr>
+                      <td>{role.role}</td>
+                      <td>
+                        <f:if condition="{role.internal}">
+                          <f:then>
+                            <!-- internal -->
+                            {role.internal.lastName} {role.internal.firstName}
+                          </f:then>
+                          <f:else>
+                            <!-- external -->
+                            {role.external}
+                          </f:else>
+                        </f:if>
+                      </td>
+                    </tr>
+                  </f:for>   
+                  <tr>
+                      <td>Geographische Breite:</td>
+                      <td>{project.address.lat}</td>
+                  </tr>
+                  <tr>
+                      <td>Geographische Länge:</td>
+                      <td>{project.address.lon}</td>
+                  </tr>
+                  <tr>
+                      <td>Beschreibung</td>
+                      <td style="white-space: normal;">
+                          {project.address.description}
+                      </td>
+                  </tr>
+                  <f:variable name="addInfos" value="{addinfo:addInfo(object:project.address)}" />
+                  <f:for each="{addInfos}" as="addinfo">
+                    <f:variable name="field" value="{addinfo:definition(object:project.address,reference:'{addinfo.reference}')}" />
+                    
+                    <tr>
+                      <td>{field.labelText}&nbsp;</td>
+                      <td>
+                        {addinfo:show(value:'{addinfo.value}', type: '{field.type}', field:field)}
+                      </td>
+                    </tr>
+                  </f:for>
+                  <tr>
+                    <td>Bauleiter</td>
+                    <td>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Polier</td>
+                    <td>
+                    </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </f:if>
+    
+    <f:if condition="{mode}=='nav'">
+      <div class="box full">
+          <div class="inner">
+              <h2>Wegbeschreibung</h2>
+              <table class="propertylist nowrap">
+                  <tr>
+                      <td>Name</td>
+                      <td>{project.person.firstName} {project.person.lastName}</td>
+                  </tr>
+                  <tr>
+                      <td>Adresse</td>
+                      <td>
+                          <f:image src="EXT:relax5core/Resources/Public/Icons/addresspriority_Person_{project.address.priority}.png" alt="" style="vertical-align: middle;" />
+                          {project.address.country}
+                          {project.address.zip}
+                          {project.address.city}
+                          {project.address.address} 
+                          <f:if condition="{project.address.number}">
+                              {project.address.number}
+                          </f:if>
+                          <f:if condition="{project.address.number}">
+                              {project.address.numberAdditions}
+                          </f:if>
+                          {project.address.description}
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>Kontaktmöglichkeiten privat</td>
+                    <td>
+                      <f:for each="{project.person.contacts}" as="contact">
+                          <f:image src="{contact.type.image.uid}" alt="" treatIdAsReference="TRUE" style="vertical-align: middle;" />
+                          {contact.contact}
+                          {contact.description}<br />
+                      </f:for>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Kontaktmöglichkeiten Firma</td>
+                    <td>
+                      <f:for each="{project.company.contacts}" as="contact">
+                          <f:image 
+                              src="EXT:crm_relax5/Resources/Public/FeIcons/contact_{contact.type}.png" 
+                              alt="{contact.type}" 
+                              style="vertical-align: middle;" 
+                              />
+                          {contact.contact}
+                          {contact.description}<br />
+                      </f:for>
+                    </td>
+                  </tr>
+                  <f:for each="{project.roles}" as="role">
+                    <tr>
+                      <td>{role.role}</td>
+                      <td>
+                        <f:if condition="{role.internal}">
+                          <f:then>
+                            <!-- internal -->
+                            {role.internal.lastName} {role.internal.firstName}
+                          </f:then>
+                          <f:else>
+                            <!-- external -->
+                            {role.external}
+                          </f:else>
+                        </f:if>
+                      </td>
+                    </tr>
+                  </f:for>   
+                  <tr>
+                      <td>Geographische Breite:</td>
+                      <td>{project.address.lat}</td>
+                  </tr>
+                  <tr>
+                      <td>Geographische Länge:</td>
+                      <td>{project.address.lon}</td>
+                  </tr>
+                  <tr>
+                      <td>Beschreibung</td>
+                      <td style="white-space: normal;">
+                          {project.address.description}
+                      </td>
+                  </tr>
+                  <f:variable name="addInfos" value="{addinfo:addInfo(object:project.address)}" />
+                  <f:for each="{addInfos}" as="addinfo">
+                    <f:variable name="field" value="{addinfo:definition(object:project.address,reference:'{addinfo.reference}')}" />
+                    
+                    <tr>
+                      <td>{field.labelText}&nbsp;</td>
+                      <td>
+                        {addinfo:show(value:'{addinfo.value}', type: '{field.type}', field:field)}
+                      </td>
+                    </tr>
+                  </f:for>
+                  <tr>
+                    <td>Bauleiter</td>
+                    <td>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Polier</td>
+                    <td>
+                    </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </f:if>
+
+    <f:render partial="Address/ShowMap" arguments="{address : project.address}" />  
+
+	<p class="footnote">docref: Templates/Project/Print.html ({view})</p>	
+
+</f:section>

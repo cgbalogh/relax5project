@@ -1,0 +1,273 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}{namespace addinfo=CGB\Relax5addinfo\ViewHelpers}<data>
+  <project>
+    <uid>
+      {project.uid}
+    </uid>
+    <owner>
+      {project.owner.username}
+    </owner>
+    <productgroup>
+      {project.productgroup.name}
+    </productgroup>
+    <product>
+      {project.product.name}
+    </product><f:for each="{project.mappings}" as="mapping">
+    <productoption>
+      <uid>
+        {mapping.productoption.uid}
+      </uid>
+      <name>
+        {mapping.productoption.name}
+      </name>
+      <value>
+        {mapping.value}
+      </value>
+    </productoption></f:for>
+    <timeHorizon>
+      {project.timeHorizon}
+    </timeHorizon>
+    <operativeStart>
+      {project.operativeStart -> f:format.date(format: 'd.m.Y')}
+    </operativeStart>
+    <operativeStartLatest>
+      {project.operativeStartLatest -> f:format.date(format: 'd.m.Y')}
+    </operativeStartLatest>
+    <target>
+      {project.target}
+    </target>
+    <actual>
+      {project.actual}
+    </actual>
+    <parent>
+      {project.parentClone}
+    </parent>
+    <projectaddress>
+      <uid>
+        {project.address.uid}
+      </uid>
+      <street>
+        {project.address.address}
+      </street>
+      <number>
+        {project.address.number}
+      </number>
+      <numberAdditions>
+        {project.address.numberAdditions}
+      </numberAdditions>
+      <zip>
+        {project.address.zip}
+      </zip>
+      <city>
+        {project.address.city}
+      </city>
+      <state>
+        {project.address.state}
+      </state>
+      <country>
+        {project.address.country}
+      </country>
+      <allowMail>
+        {project.address.allowMail}
+      </allowMail>
+      <priority>
+        {project.address.priority}
+      </priority>
+      <sorting>
+        {project.address.sorting}
+      </sorting>
+      <geoOnly>
+        {project.address.geoOnly}
+      </geoOnly>
+      <lat>
+        {project.address.lat}
+      </lat>
+      <lon>
+        {project.address.lon}
+      </lon><f:variable name="addInfos" value="{addinfo:addInfo(object:project.address)}" /><f:for each="{addInfos}" as="addinfo"><f:variable name="field" value="{addinfo:definition(object:project.address,reference:'{addinfo.reference}')}" /><f:if condition="{field.name}">
+      <{field.name}>
+        {addinfo:show(value:'{addinfo.value}', type: '{field.type}', field:field)}
+      </{field.name}></f:if></f:for>
+    </projectaddress>
+    <dates>
+      <angebot>
+        <description>Letztes Angebot</description>
+        <done></done>
+        <date><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="8" property="crdate" /></f:format.date></date>
+      </angebot>
+      <auftrag>
+        <description>Auftrag eingetragen</description>
+        <done></done>
+        <date><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="10" property="crdate" /></f:format.date></date>
+      </auftrag>
+      <planFertig>
+        <description>Letzer Entwurfsplan</description>
+        <done><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="6" property="done" /></f:format.date></done>
+        <date><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="6" property="crdate" /></f:format.date></date>
+      </planFertig>
+      <vorpruefplanFertig>
+        <description>Letzer Vorprüfplan</description>
+        <done><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="39" property="done" /></f:format.date></done>
+        <date><f:format.date format="d.m.Y"><r5p:findState project="{project}" stateUid="39" property="due" /></f:format.date></date>
+        <type></type>
+      </vorpruefplanFertig>
+      <einreichplanFertig>
+        <description>Letzer Einreichplan</description>
+        <done><f:format.date format="d.m.Y"></f:format.date></done>
+        <date><f:format.date format="d.m.Y"></f:format.date></date>
+        <ep></ep>
+        <extern><f:format.date format="d.m.Y"></f:format.date></extern>
+      </einreichplanFertig>
+      <bemusterung>
+        <description>Bemusterungstermin</description>
+        <done></done>
+        <date>
+          <f:for each="{project.appointments}" as="appointment">
+            <f:if condition="{appointment.subjectOrig}=='[BM] Bemusterungstermin'">
+              <f:format.date format="d.m.Y">{appointment.date}</f:format.date>
+            </f:if>
+          </f:for>
+        </date>
+      </bemusterung>
+    </dates>
+    <f:for each="{project.states}" as="state">
+      <f:if condition="({state.state.uid}==10) or ({state.state.uid}==6) or ({state.state.uid}==8) or ({state.state.uid}==14) or ({state.state.uid}==11) or ({state.state.uid}==15) or ({state.state.uid}==39) or ({state.state.uid}==16)">
+        <state>
+          <uid>{state.uid}</uid>
+          <stateRaw>{state.state.uid}</stateRaw>
+          <stateName>{state.state.name}</stateName>
+          <owner>{state.owner.username}</owner>
+          <date>{state.crdate -> f:format.date(format: 'd.m.Y')}</date>
+          <due>{state.due -> f:format.date(format: 'd.m.Y')}</due>
+          <done>{state.done -> f:format.date(format: 'd.m.Y')}</done>
+          <f:for each="{state.appointments}" as="appointment">
+            <appointment>
+              <date>{appointment.date -> f:format.date(format: 'd.m.Y H:i:s')}</date>
+              <owner>{appointment.owner.username}</owner>
+              <subject>{appointment.subject}</subject>
+            </appointment>
+          </f:for>
+          <f:for each="{state.responsibilities}" as="responsibility">
+            <responsibility>
+              <owner>{responsibility.owner.username}</owner>
+              <due>{responsibility.due -> f:format.date(format: 'd.m.Y')}</due>
+              <done>{responsibility.done -> f:format.date(format: 'd.m.Y')}</done>
+              <id>{responsibility.id}</id>
+            </responsibility>
+          </f:for>
+          <f:for each="{state.dataArray}" key="key" as="data">
+            <data>
+              <key>{key}</key>
+              <f:for each="{data}" key="key2" as="data2">
+                <key2>{key2}</key2>
+                <data2>{data2}</data2>
+              </f:for>
+            </data>
+          </f:for>
+        </state>
+      </f:if>
+    </f:for>
+    <f:for each="{project.childClone}" as="child">
+      <f:for each="{child.states}" as="state">
+        <f:if condition="({state.state}=='mitAb') or ({state.state}=='abDurchsicht') or ({state.state}=='abAusgang') or ({state.state}=='abEingang')">
+          <state>
+            <uid>{state.uid}</uid>
+            <stateRaw>{state.state}</stateRaw>
+            <stateName>{state.stateName}</stateName>
+            <owner>{state.owner.username}</owner>
+            <date>{state.date -> f:format.date(format: 'd.m.Y')}</date>
+            <due>{state.due -> f:format.date(format: 'd.m.Y')}</due>
+            <done>{state.done -> f:format.date(format: 'd.m.Y')}</done>
+            <f:for each="{state.appointments}" as="appointment">
+              <appointment>
+                <date>{appointment.date -> f:format.date(format: 'd.m.Y H:i:s')}</date>
+                <owner>{appointment.owner.username}</owner>
+                <subject>{appointment.subject}</subject>
+              </appointment>
+            </f:for>
+            <f:for each="{state.responsibilities}" as="responsibility">
+              <responsibility>
+                <owner>{responsibility.owner.username}</owner>
+                <due>{responsibility.due -> f:format.date(format: 'd.m.Y')}</due>
+                <done>{responsibility.done -> f:format.date(format: 'd.m.Y')}</done>
+                <id>{responsibility.id}</id>
+              </responsibility>
+            </f:for>
+          </state>
+        </f:if>
+      </f:for>
+    </f:for>
+  </project>
+  <einreichplanung></einreichplanung>
+  <person>
+    <uid>{project.person.uid}</uid>
+    <owner>{project.person.owner.username}</owner>
+    <lastName>{project.person.lastName}</lastName>
+    <firstName>{project.person.firstName}</firstName>
+    <gender>{project.person.gender}</gender>
+    <title>{project.person.title}</title>
+    <addresses><f:for each="{project.person.addresses}" as="address" >
+      <address>
+        <uid>{address.uid}</uid>
+        <street>{address.address}</street>
+        <number>{address.number}</number>
+        <numberAdditions>{address.numberAdditions}</numberAdditions>
+        <zip>{address.zip}</zip>
+        <city>{address.city}</city>
+        <state>{address.state}</state>
+        <country>{address.country}</country>
+        <allowMail>{address.allowMail}</allowMail>
+        <priority>{address.priority}</priority>
+        <sorting>{address.sorting}</sorting>
+      </address></f:for>
+    </addresses>
+    <contacts>
+      <f:for each="{project.person.contacts}" as="contact" >
+        <contact>
+          <uid>{contact.uid}</uid>
+          <type>{contact.contact}</type>
+          <contact>{contact.contact}</contact>
+        </contact>
+      </f:for>
+    </contacts>
+  </person>
+  <relations><f:for each="{project.person.relations}" as="relation" >
+    <relation>
+      <target.uid>{relation.target.uid}</target.uid>
+      <target.lastName>{relation.target.lastName}</target.lastName>
+      <target.firstName>{relation.target.firstName}</target.firstName>
+      <target.gender>{relation.target.gender}</target.gender>
+      <addresses><f:for each="{relation.target.addresses}" as="address" >
+          <address>
+            <uid>{address.uid}</uid>
+            <street>{address.address}</street>
+            <number>{address.number}</number>
+            <numberAdditions>{address.numberAdditions}</numberAdditions>
+            <zip>{address.zip}</zip>
+            <city>{addrerss.city}</city>
+            <state>{address.state}</state>
+            <country>{address.country}</country>
+            <allowMail>{address.allowMail}</allowMail>
+          </address>
+        </f:for>
+      </addresses>
+      <contacts>
+        <f:for each="{relation.target.contacts}" as="contact" >
+          <contact>
+            <uid>{contact.uid}</uid>
+            <type>{contact.contact}</type>
+            <contact>{contact.contact}</contact>
+          </contact>
+        </f:for>
+      </contacts>
+    </relation></f:for>
+  </relations>
+  <roles>
+    <f:for each="{project.roles}" as="role">
+      <role>
+        {role.role} {role.internal.lastName} {role.internal.firstName} {role.external}
+      </role>
+    </f:for>
+  </roles>
+  <version>8.7.2-dev180228</version>
+</data>
+

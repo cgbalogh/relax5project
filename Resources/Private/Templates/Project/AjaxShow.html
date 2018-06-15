@@ -1,0 +1,27 @@
+{namespace rlx5=CGB\Relax5core\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+
+
+
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<!-- docref BEGIN: EXT:relax5project/Resources/Private/Partials/Project/AjaxShow.html v8.7 -->
+<!-- rev: 2017-07-25 -->
+
+  <f:render partial="General/ShowInfo" arguments="{item:project, itemtype:'project'}" />
+  <f:render partial="Project/ShowHeader" arguments="{_all}" />    
+  
+  <div class="rlx5-projectgrid-data">
+    <f:render partial="Project/ShowProjectData" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-product">
+    <f:render partial="Project/ShowProductData" arguments="{_all}" />
+  </div>
+  <div class="rlx5-projectgrid-states">
+    <f:render partial="State/ShowStates" arguments="{_all}" />
+  </div>
+
+<!-- docref END: EXT:relax5project/Resources/Private/Partials/Project/AjaxShow.html v8.7 -->
+  

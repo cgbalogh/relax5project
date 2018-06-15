@@ -1,0 +1,54 @@
+{namespace h=Helhum\TyposcriptRendering\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace a=CGB\Accessmanager\ViewHelpers}
+{namespace r5f=CGB\Relax5validator\ViewHelpers}
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+  <label for="date">
+      <f:translate key="tx_relax5project_domain_model_cost.date" />
+  </label>
+  <r5f:form.textfield 
+    property="date" 
+    id="date" 
+    value="{cost.date->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.date_format\')}' )}" 
+    class="datepicker rlx5-30" 
+    validatorContext="UpdateCost" 
+  /><br />
+
+  <label for="name">
+      <f:translate key="tx_relax5project_domain_model_cost.name" />
+  </label>
+  <f:form.textfield property="name" /><br />
+
+  <label for="excludeGroup">
+      <f:translate key="tx_relax5project_domain_model_cost.exclude_group" />
+  </label>
+  <f:form.textfield property="excludeGroup" /><br />
+
+  <label for="target">
+      <f:translate key="tx_relax5project_domain_model_cost.target" />
+  </label>
+  <f:form.textfield property="target" /><br />
+
+  <label for="actual">
+      <f:translate key="tx_relax5project_domain_model_cost.actual" />
+  </label>
+  <f:form.textfield property="actual" /><br />
+
+  <label for="confirmed">
+      <f:translate key="tx_relax5project_domain_model_cost.confirmed" />
+  </label>
+  <f:form.checkbox property="confirmed" value="1" /><br />
+
+  <label for="void">
+      <f:translate key="tx_relax5project_domain_model_cost.void" />
+  </label>
+  <f:form.checkbox property="void" value="1" /><br />
+
+  <label for="keycode">
+      <f:translate key="tx_relax5project_domain_model_cost.keycode" />
+  </label>
+  <f:form.textfield property="keycode" /><br />
+
+</html>

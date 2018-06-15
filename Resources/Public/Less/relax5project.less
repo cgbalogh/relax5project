@@ -1,0 +1,64 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11.07.2017, 07:32:18
+    Author     : cbalogh
+*/
+
+@project-color: #757575;
+@project-color-medium: #999999;
+@project-color-light: #c9c9c9;
+@project-grad-light: #efefef;
+@project-grad-medium: #999999;
+
+@base-size: 12px;
+@base-padding: 2px;
+
+.rlx5-project .rlx5-info {
+  border-top: 3px solid @project-color-medium;
+  border-bottom: 3px solid @project-color-medium;
+  margin-bottom: @base-padding * 4;
+  span {
+    color: @project-color;
+    background-color: @project-color-light;
+  }
+}
+
+.rlx5-project .rlx5-coredata-single:hover {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eaeef4+0,99b2d3+100 */
+  background: @project-grad-medium; /* Old browsers */
+  background: -moz-linear-gradient(top, @project-grad-light 0%, @project-grad-medium 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, @project-grad-light 0%,@project-grad-medium 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, @project-grad-light 0%,@project-grad-medium 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@project-grad-light', endColorstr='@project-grad-medium',GradientType=0 ); /* IE6-9 */  
+
+  .rlx5-buttons {
+    display: block;
+    opacity: 1;
+    transform: translate(0);
+  }
+
+  .rlx5-buttons:before {
+    opacity: 0;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }  
+}
+
+@media (max-width: 820px) {
+  .rlx5-project-datagrid-container {
+    display: block;
+  }
+  
+  .rlx5-core-data-box  {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .rlx5-isempty {
+    display: none;
+  }
+}

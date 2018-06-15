@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-10-21T23:24:33Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>Name of this state. Will appear in frontend.</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Description of this state.</source>
+			</trans-unit>
+			<trans-unit id="subgroup.description">
+				<source>The subgroup is used to allow a grouping of states in the dashboard.</source>
+			</trans-unit>
+			<trans-unit id="style.description">
+				<source>The style setting will be added to the div surrounding the state.</source>
+			</trans-unit>
+			<trans-unit id="noshow_dashboard.description">
+				<source>Don&#039;t show on dashboard. If checked the state will never appear in the dashboard, even if not excluded in user preferences.</source>
+			</trans-unit>
+			<trans-unit id="color_primary.description">
+				<source>Primary Color will be used for font color and for dashboard.</source>
+			</trans-unit>
+			<trans-unit id="transition_ins.description">
+				<source>
+                  These actions will be executed when entering this state. 
+                  Typically there will be only one entry, but there may be multiple 
+                  entries as well. You may set conditions inside the transition which control if 
+                  the action will be executed. There are no buttons; execution will be dependent 
+                  on the previous state.
+                </source>
+			</trans-unit>
+			<trans-unit id="transition_outs.description">
+				<source>
+                  These actions will be offered to the FE user as buttons. Each entry
+                  represents one button that might be visible or not - depending on conditions 
+                  inside the transition. Usually these buttons control the project flow. Typically there
+                  will be a set of buttons available for the FE users. 
+                </source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

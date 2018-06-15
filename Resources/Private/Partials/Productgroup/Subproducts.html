@@ -1,0 +1,34 @@
+{namespace r5p=CGB\Relax5project\ViewHelpers}
+
+<f:for each="{subproducts}" as="subproduct">
+  <div id="subproduct_wrap_{subproduct.uid}">
+    <label for="subproduct_{subproduct.uid}">
+      {subproduct.name}
+    </label>
+    
+    <f:form.select 
+      class="rlx5-25"
+      name="{prefix}[subproducts][{subproduct.uid}]" 
+      id="subproduct_{subproduct.uid}"
+      options="{subproduct.availableItems}"
+      optionValueField="uid"
+      optionLabelField="name"
+      sortByOptionLabel="true"
+      prependOptionLabel="--"
+      prependOptionValue=""
+      value="<r5p:SubproductValue project='{project}' subproduct='{subproduct}' />" 
+      additionalAttributes="{subproductid:subproduct.uid}"
+    />
+    <f:form.select 
+      class="rlx5-25"
+      name="{prefix}[statusvalues][{subproduct.uid}]" 
+      id="subproduct_{subproduct.uid}_status"
+      options="{statusOptions}"
+      value="<r5p:SubproductValue project='{project}' subproduct='{subproduct}' property='status' />" 
+      additionalAttributes="{subproductid:subproduct.uid}"
+    />
+    
+    <br />
+  </div>
+  
+</f:for>

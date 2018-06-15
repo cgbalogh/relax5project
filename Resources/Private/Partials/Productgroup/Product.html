@@ -1,0 +1,21 @@
+<label for="name">
+  <f:translate key="tx_relax5project_domain_model_project.product" />
+</label>
+
+<f:form.select 
+    property="product" 
+    value="{project.product.uid}"
+    options="{products}" 
+    optionValueField="uid" 
+    optionLabelField="name" 
+    name="{prefix}[product]"
+    size="1" 
+    id="project_product_select" 
+    additionalAttributes="{project : project.uid, optionid: 'pp', condition: ''}"
+    class="" />		
+
+<script>
+  // will be executed after AJAX call is completed
+  activateLoadProductoptions ('#project_product_select', '', '#project_productoptions_wrap', $('._loadProductoptions').attr('loadproductoptions') );
+  $('#project_product_select').change();
+</script>

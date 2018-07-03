@@ -10,20 +10,22 @@ call_user_func(
             'Project',
             [
                 'Project' => 'list, show, edit, update, new, create, delete, ajaxShow, moveProject',
-                'State' => 'nextstate, show',
+                'State' => 'nextstate, show, edit, update, delete',
                 'StatePool' => 'show',
                 'Productgroup' => 'loadProducts, loadProductoptions',
                 'AdditionalInfo' => 'edit, update, new, create, delete',
-                'Appointment' => 'processAppointment, edit'
+                'Appointment' => 'processAppointment, edit',
+                'Cost' => 'edit, update'
             ],
             // non-cacheable actions
             [
                 'Project' => 'list, show, edit, update, new, create, delete, ajaxShow, moveProject',
-                'State' => 'nextstate, show',
+                'State' => 'nextstate, show, edit, update, delete',
                 'StatePool' => 'show',
                 'Productgroup' => 'loadProducts, loadProductoptions',
                 'AdditionalInfo' => 'edit, update, new, create, delete',
-                'Appointment' => 'processAppointment, edit'
+                'Appointment' => 'processAppointment, edit',
+                'Cost' => 'edit, update'
             ]
         );
 
@@ -63,6 +65,18 @@ call_user_func(
             ]
         );
 
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'CGB.Relax5project',
+            'Print',
+            [
+                'Project' => 'print'
+            ],
+            // non-cacheable actions
+            [
+                'Project' => 'print'
+            ]
+        );
+
     // wizards
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         'mod {
@@ -96,12 +110,21 @@ call_user_func(
                         }
                     }
                     xmlexport {
-                        icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('relax5project') . 'Resources/Public/Icons/user_plugin_project.svg
+                        icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('relax5project') . 'Resources/Public/Icons/user_plugin_xmlexport.svg
                         title = LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_xmlexport
                         description = LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_xmlexport.description
                         tt_content_defValues {
                             CType = list
                             list_type = relax5project_xmlexport
+                        }
+                    }
+                    print {
+                        icon = ' . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('relax5project') . 'Resources/Public/Icons/user_plugin_print.svg
+                        title = LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_print
+                        description = LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_print.description
+                        tt_content_defValues {
+                            CType = list
+                            list_type = relax5project_print
                         }
                     }
                 }

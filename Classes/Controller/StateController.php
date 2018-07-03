@@ -165,6 +165,7 @@ class StateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 'appointment' => $appointment,
                 'responsibility' => $responsibility,
                 'feUserUid' => $this->accessControlService->getFrontendUserUid(),
+                'feUser' => $this->frontendUser,
                 'durationSelect' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5core_domain_model_appointment', 'duration', 'relax5core'),
                 'appointmentTypeSelect' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5core_domain_model_appointment', 'appointment_type', 'relax5core'),
                 'appointmentStatusSelect' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5core_domain_model_appointment', 'appointment_status', 'relax5core'),

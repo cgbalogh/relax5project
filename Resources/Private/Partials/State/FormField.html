@@ -10,7 +10,7 @@
       <r5f:form.textfield 
         id="input_{input.uid}" 
         name="data[{input.id}]" 
-        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate})}"
+        value="{r5p:options(options:input.options,result:'value',key:'value',data:{project:project,thisstate:thisstate,feUser:feUser})}"
         validatorContext="{f:if(condition:'{nextstate}',then:'Nextstate_{nextstate.uid}',else:'Transition_{transitionOut.uid}')}" 
         additionalAttributes="{errorproperty:'data.data[{input.id}]'}"
       /><br />
@@ -77,7 +77,7 @@
 
       <r5f:form.select 
         id="input_{input.uid}"
-        options="{r5p:options(options:input.options,result:'selectFromRepository',key:'selectoptions',data:{project:project,thisstate:thisstate})}"
+        options="{r5p:options(options:input.options,result:'selectFromRepository',key:'selectoptions',data:{project:project,thisstate:thisstate,feUser:feUser})}"
         optionValueField="{r5p:options(options:input.options,key:'optionValueField')}"
         optionLabelField="{r5p:options(options:input.options,key:'optionLabelField')}"
         sortByOptionLabel="{r5p:options(options:input.options,key:'sortByOptionLabel')}"

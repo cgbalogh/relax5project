@@ -15,7 +15,7 @@ namespace CGB\Relax5project\Domain\Repository;
 /**
  * The repository for Appointments
  */
-class AppointmentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class AppointmentRepository extends \CGB\Fechangelog\Persistence\Repository
 {
     /**
      * @var array

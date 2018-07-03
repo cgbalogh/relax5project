@@ -41,7 +41,7 @@ class OptionsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 	*/
 	public function render ($options, $result='', $key = '', $data = null) {
         $singleOption = \CGB\Relax5project\Service\ExecuteService::getSingleOption($options, $key);
-        
+
         switch($result) {
             case 'array':
                 $compoundList = $optionsArray = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $singleOption);
@@ -119,7 +119,6 @@ class OptionsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
                 break;
             
             case 'value':
-                
                 // get the value entry from the action.options entries
                 $value = \CGB\Relax5project\Service\ExecuteService::getSingleOption($options, 'value');
 

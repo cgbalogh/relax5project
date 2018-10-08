@@ -24,7 +24,7 @@ class Productgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @inject
      */
     protected $productgroupRepository = null;
-    
+
     /**
      * Name
      *
@@ -204,24 +204,23 @@ class Productgroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->productoptions = $productoptions;
     }
-    
+
     /**
      * Returns the productoptionsFull
-     * 
+     *
      * @return array
      */
-    public function getProductoptionsFull () {
+    public function getProductoptionsFull()
+    {
         $plainList = $this->productgroupRepository->findProductoptions($this->getUid());
         $productoptions = [];
         $productoptionsFull = [];
         foreach ($this->productoptions as $productoption) {
             $productoptions[$productoption->getUid()] = $productoption;
         }
-        
         foreach ($plainList as $uid) {
             $productoptionsFull[] = $productoptions[$uid];
         }
         return $productoptionsFull;
     }
-    
 }

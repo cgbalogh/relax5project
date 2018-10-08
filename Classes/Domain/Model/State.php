@@ -105,6 +105,13 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $notifyDate = null;
 
     /**
+     * Notify Times
+     *
+     * @var int
+     */
+    protected $notifyTimes = 0;
+
+    /**
      * Tag Data
      *
      * @var string
@@ -185,11 +192,12 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $responsibilities = null;
 
     /**
-     * Notify Times
+     * Creator
      *
-     * @var int
+     * @var \CGB\Relax5core\Domain\Model\Owner
+     * @lazy
      */
-    protected $notifyTimes = 0;
+    protected $creator = null;
 
     /**
      * __construct
@@ -803,5 +811,26 @@ class State extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setNumber($number)
     {
         $this->number = $number;
+    }
+
+    /**
+     * Returns the creator
+     *
+     * @return \CGB\Relax5core\Domain\Model\Owner $creator
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * Sets the creator
+     *
+     * @param \CGB\Relax5core\Domain\Model\Owner $creator
+     * @return void
+     */
+    public function setCreator(\CGB\Relax5core\Domain\Model\Owner $creator)
+    {
+        $this->creator = $creator;
     }
 }

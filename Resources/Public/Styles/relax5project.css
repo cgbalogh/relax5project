@@ -130,7 +130,7 @@ table.tx-relax5project {
 
 table.tx-relax5project tr td:nth-child(1) {
   font-weight: bold;
-  padding: 0 .5em;
+  /* padding: 0 .5em; */
   text-align: left;
   min-width: 33%;
   border-bottom: 1px solid #eeeeee;
@@ -322,6 +322,7 @@ table.rlx5-projectstate-additionalinfos tr td p {
   margin: 0;
 }
 
+.projectList h3,
 #projectList h3 {
   background-color: #dddddd;
 }

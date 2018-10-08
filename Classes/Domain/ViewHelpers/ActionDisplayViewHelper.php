@@ -103,6 +103,7 @@ class ActionDisplayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
             'projectstate' => $projectstate,
             'transition' => $transition,
             'addinfos' => $additionalInfos,
+            'feuser' => ['uid' => $feUserUid],
         ];
         
         // disable button if denyIfDOne is set and done is not empty
@@ -126,7 +127,7 @@ class ActionDisplayViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
 
         $allow = false;
         // enable button if allowStateOwner and matches feUserUid
-        if ($transition->getAllowStateOwner() && $projectstate && ($projectstate->getOwner() && ($projectstate->getOwner()->getUid()) == $feUserUid) ) {
+        if ($transition->getAllowStateOwner() && ($projectstate) && ($projectstate->getOwner() && ($projectstate->getOwner()->getUid()) == $feUserUid) ) {
             $allow = true;
         }
         

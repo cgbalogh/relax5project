@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-06T13:00:12Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="value.description">
+				<source>Value</source>
+			</trans-unit>
+			<trans-unit id="status.description">
+				<source>status</source>
+			</trans-unit>
+			<trans-unit id="productoption.description">
+				<source>Productoption</source>
+			</trans-unit>
+			<trans-unit id="subproduct.description">
+				<source>Subproduct</source>
+			</trans-unit>
+			<trans-unit id="available_item.description">
+				<source>availableItem</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

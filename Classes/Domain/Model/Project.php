@@ -491,7 +491,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getName() : null;
-        }        
+        }
         if (!$this->name && $this->productgroup) {
             return $this->productgroup->getName() . ' ' . ($this->product ? $this->product->getName() : '');
         }
@@ -518,7 +518,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getDescription() : null;
-        }        
+        }
         return $this->description;
     }
 
@@ -542,7 +542,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getTimeHorizon() : null;
-        }        
+        }
         return $this->timeHorizon;
     }
 
@@ -590,7 +590,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getOperativeEnd() : null;
-        }        
+        }
         return $this->operativeEnd;
     }
 
@@ -614,7 +614,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getTarget() : null;
-        }        
+        }
         return $this->target;
     }
 
@@ -638,7 +638,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getActual() : null;
-        }        
+        }
         return $this->actual;
     }
 
@@ -732,7 +732,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getProductgroup() : null;
-        }        
+        }
         return $this->productgroup;
     }
 
@@ -802,7 +802,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getMappings() : null;
-        }        
+        }
         return $this->mappings;
     }
 
@@ -895,7 +895,7 @@ class Project extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         if ($this->clone) {
             return $this->project ? $this->project->getAddress() : null;
-        }        
+        }
         return $this->address;
     }
 

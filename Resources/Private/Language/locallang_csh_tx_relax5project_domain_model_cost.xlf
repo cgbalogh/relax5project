@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-06T13:00:12Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="date.description">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="exclude_group.description">
+				<source>Exclude Group</source>
+			</trans-unit>
+			<trans-unit id="target.description">
+				<source>Target</source>
+			</trans-unit>
+			<trans-unit id="actual.description">
+				<source>Actual</source>
+			</trans-unit>
+			<trans-unit id="confirmed.description">
+				<source>Confirmed</source>
+			</trans-unit>
+			<trans-unit id="void.description">
+				<source>Void</source>
+			</trans-unit>
+			<trans-unit id="keycode.description">
+				<source>Keycode</source>
+			</trans-unit>
+			<trans-unit id="owner.description">
+				<source>Owner</source>
+			</trans-unit>
+			<trans-unit id="can_confirm.description">
+				<source>Can Confirm</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

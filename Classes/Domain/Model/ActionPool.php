@@ -68,6 +68,13 @@ class ActionPool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $keepState = false;
 
     /**
+     * Keep State Distinct
+     *
+     * @var bool
+     */
+    protected $keepStateDistinct = false;
+
+    /**
      * Debug
      *
      * @var bool
@@ -81,13 +88,6 @@ class ActionPool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $inputs = null;
-
-    /**
-     * Keep State Distinct
-     *
-     * @var bool
-     */
-    protected $keepStateDistinct = false;
 
     /**
      * Returns the name

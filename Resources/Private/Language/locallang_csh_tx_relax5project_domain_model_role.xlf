@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-06T13:00:12Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="role.description">
+				<source>Role</source>
+			</trans-unit>
+			<trans-unit id="external.description">
+				<source>External</source>
+			</trans-unit>
+			<trans-unit id="internal.description">
+				<source>Internal</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

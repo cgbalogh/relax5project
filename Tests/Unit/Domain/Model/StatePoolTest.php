@@ -25,6 +25,156 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
+    public function getNameReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getName()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setNameForStringSetsName()
+    {
+        $this->subject->setName('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'name',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getDescriptionReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setDescriptionForStringSetsDescription()
+    {
+        $this->subject->setDescription('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'description',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSubgroupReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getSubgroup()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSubgroupForStringSetsSubgroup()
+    {
+        $this->subject->setSubgroup('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'subgroup',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getStyleReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getStyle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setStyleForStringSetsStyle()
+    {
+        $this->subject->setStyle('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'style',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getNoshowDashboardReturnsInitialValueForBool()
+    {
+        self::assertSame(
+            false,
+            $this->subject->getNoshowDashboard()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setNoshowDashboardForBoolSetsNoshowDashboard()
+    {
+        $this->subject->setNoshowDashboard(true);
+
+        self::assertAttributeEquals(
+            true,
+            'noshowDashboard',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getColorPrimaryReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getColorPrimary()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setColorPrimaryForStringSetsColorPrimary()
+    {
+        $this->subject->setColorPrimary('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'colorPrimary',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
     public function getTransitionInsReturnsInitialValueForTransitionPool()
     {
         $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -32,7 +182,6 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             $newObjectStorage,
             $this->subject->getTransitionIns()
         );
-
     }
 
     /**
@@ -50,7 +199,6 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'transitionIns',
             $this->subject
         );
-
     }
 
     /**
@@ -85,7 +233,6 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->inject($this->subject, 'transitionIns', $transitionInsObjectStorageMock);
 
         $this->subject->removeTransitionIn($transitionIn);
-
     }
 
     /**
@@ -98,7 +245,6 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             $newObjectStorage,
             $this->subject->getTransitionOuts()
         );
-
     }
 
     /**
@@ -116,7 +262,6 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'transitionOuts',
             $this->subject
         );
-
     }
 
     /**
@@ -151,6 +296,5 @@ class StatePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->inject($this->subject, 'transitionOuts', $transitionOutsObjectStorageMock);
 
         $this->subject->removeTransitionOut($transitionOut);
-
     }
 }

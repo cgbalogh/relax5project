@@ -355,15 +355,12 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         foreach ($removeMappingList as $mappingToRemove) {
             $project->removeMapping($mappingToRemove);
         }
-        
-        if (($totalTarget = $project->getTotalTarget()) <> 0) {
+        if (($totalTarget = $project->getTotalTarget()) != 0) {
             $project->setTarget($totalTarget);
         }
-
-        if (($totalActual = $project->getTotalActual()) <> 0) {
+        if (($totalActual = $project->getTotalActual()) != 0) {
             $project->setActual($totalActual);
         }
-        
         $this->projectRepository->update($project);
         return json_encode(['success' => 'ok']);
     }
@@ -482,7 +479,7 @@ class ProjectController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $this->view->assignMultiple([
             'project' => $project,
-            'mode' => $mode,
+            'mode' => $mode
         ]);
     }
 }

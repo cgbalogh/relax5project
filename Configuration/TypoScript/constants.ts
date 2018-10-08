@@ -59,6 +59,21 @@ plugin.tx_relax5project_xmlexport {
     }
 }
 
+plugin.tx_relax5project_print {
+    view {
+        # cat=plugin.tx_relax5project_print/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:relax5project/Resources/Private/Templates/
+        # cat=plugin.tx_relax5project_print/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:relax5project/Resources/Private/Partials/
+        # cat=plugin.tx_relax5project_print/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:relax5project/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_relax5project_print//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
 plugin.tx_relax5project_project {

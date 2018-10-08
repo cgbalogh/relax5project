@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2017-06-22T09:34:54Z" product-name="relax5project">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-06T13:00:12Z" product-name="relax5project">
 		<header/>
 		<body>
+			<trans-unit id="state_name.description">
+				<source>stateName</source>
+			</trans-unit>
+			<trans-unit id="state_group.description">
+				<source>stateGroup</source>
+			</trans-unit>
+			<trans-unit id="due.description">
+				<source>due</source>
+			</trans-unit>
+			<trans-unit id="due_orig.description">
+				<source>dueOrig</source>
+			</trans-unit>
+			<trans-unit id="done.description">
+				<source>done</source>
+			</trans-unit>
+			<trans-unit id="forward.description">
+				<source>forward</source>
+			</trans-unit>
+			<trans-unit id="rejected.description">
+				<source>Rejected</source>
+			</trans-unit>
+			<trans-unit id="forward_date.description">
+				<source>Forward Date</source>
+			</trans-unit>
+			<trans-unit id="notify_date.description">
+				<source>Notify Date</source>
+			</trans-unit>
+			<trans-unit id="notify_times.description">
+				<source>Notify Times</source>
+			</trans-unit>
+			<trans-unit id="tag_data.description">
+				<source>Tag Data</source>
+			</trans-unit>
+			<trans-unit id="data.description">
+				<source>Data</source>
+			</trans-unit>
+			<trans-unit id="number.description">
+				<source>Number</source>
+			</trans-unit>
 			<trans-unit id="appointments.description">
 				<source>Appointments</source>
+			</trans-unit>
+			<trans-unit id="state.description">
+				<source>State</source>
+			</trans-unit>
+			<trans-unit id="owner.description">
+				<source>Owner</source>
+			</trans-unit>
+			<trans-unit id="usergroup.description">
+				<source>Usergroup</source>
+			</trans-unit>
+			<trans-unit id="additional_infos.description">
+				<source>Additional Infos</source>
+			</trans-unit>
+			<trans-unit id="forwarder.description">
+				<source>Forwarder</source>
+			</trans-unit>
+			<trans-unit id="responsibilities.description">
+				<source>Responsibilities</source>
+			</trans-unit>
+			<trans-unit id="creator.description">
+				<source>Creator</source>
+			</trans-unit>
+			<trans-unit id="project.description">
+				<source>Project</source>
+			</trans-unit>
+			<trans-unit id="notify.description">
+				<source>notify</source>
+			</trans-unit>
+			<trans-unit id="prev.description">
+				<source>Previous State</source>
+			</trans-unit>
+			<trans-unit id="next.description">
+				<source>Next State</source>
 			</trans-unit>
 		</body>
 	</file>

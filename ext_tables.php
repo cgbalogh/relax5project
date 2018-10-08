@@ -8,13 +8,31 @@ call_user_func(
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'CGB.Relax5project',
             'Project',
-            'Project'
+            'Relax5project: Project'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'CGB.Relax5project',
             'Dashboard',
-            'Dashboard'
+            'Relax5project: Dashboard'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'CGB.Relax5project',
+            'Mockup',
+            'Relax5project: Mockup'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'CGB.Relax5project',
+            'Xmlexport',
+            'Relax5project: XML'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'CGB.Relax5project',
+            'Print',
+            'Relax5project: Print'
         );
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('relax5project', 'Configuration/TypoScript', 'relax5project');
@@ -63,6 +81,12 @@ call_user_func(
 
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_relax5project_domain_model_input', 'EXT:relax5project/Resources/Private/Language/locallang_csh_tx_relax5project_domain_model_input.xlf');
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_relax5project_domain_model_input');
+
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_relax5project_domain_model_role', 'EXT:relax5project/Resources/Private/Language/locallang_csh_tx_relax5project_domain_model_role.xlf');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_relax5project_domain_model_role');
+
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_relax5project_domain_model_responsibility', 'EXT:relax5project/Resources/Private/Language/locallang_csh_tx_relax5project_domain_model_responsibility.xlf');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_relax5project_domain_model_responsibility');
 
     }
 );

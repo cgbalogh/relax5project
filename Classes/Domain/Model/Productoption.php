@@ -421,21 +421,22 @@ class Productoption extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->displayCondition = $displayCondition;
     }
-    
+
     /**
      * Gets the inputValues as array
+     *
      * @return array
      */
-    function getInputValuesArray() {
+    function getInputValuesArray()
+    {
         $values = \TYPO3\CMS\Core\Utility\GeneralUtility::trimExplode(',', $this->inputValues);
-        $selectArray = array();
+        $selectArray = [];
         foreach ($values as $value) {
-            $entry = new \stdClass;
+            $entry = new \stdClass();
             $entry->label = $value;
             $entry->value = $value;
             $selectArray[] = $entry;
         }
         return $selectArray;
     }
-    
 }

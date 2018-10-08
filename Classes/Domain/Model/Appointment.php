@@ -96,12 +96,12 @@ class Appointment extends \CGB\Relax5core\Domain\Model\Appointment
     {
         $this->project = $project;
     }
-    
+
     /**
-     * 
      * @return bool
      */
-    public function getHasProject() {
-        return ! is_null($this->project);
+    public function getHasProject()
+    {
+        return !is_null($this->project);
     }
 }

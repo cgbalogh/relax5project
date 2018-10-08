@@ -17,14 +17,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'name,description,time_horizon,operative_start,operative_start_latest,operative_end,target,actual,permissions,auto_name,clone,appointments,states,person,company,owner,usergroup,productgroup,product,mappings,address,costs,child_projects,current_state',
+        'searchFields' => 'name,description,time_horizon,operative_start,operative_start_latest,operative_end,target,actual,permissions,auto_name,clone,mockup,appointments,states,person,company,owner,usergroup,productgroup,product,mappings,address,costs,child_projects,current_state,roles',
         'iconfile' => 'EXT:relax5project/Resources/Public/Icons/tx_relax5project_domain_model_project.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, time_horizon, operative_start, operative_start_latest, operative_end, target, actual, permissions, auto_name, clone, appointments, states, person, company, owner, usergroup, productgroup, product, mappings, address, costs, child_projects, current_state',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, time_horizon, operative_start, operative_start_latest, operative_end, target, actual, permissions, auto_name, clone, mockup, appointments, states, person, company, owner, usergroup, productgroup, product, mappings, address, costs, child_projects, current_state, roles',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, time_horizon, operative_start, operative_start_latest, operative_end, target, actual, permissions, auto_name, clone, appointments, states, person, company, owner, usergroup, productgroup, product, mappings, address, costs, child_projects, current_state, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, time_horizon, operative_start, operative_start_latest, operative_end, target, actual, permissions, auto_name, clone, mockup, appointments, states, person, company, owner, usergroup, productgroup, product, mappings, address, costs, child_projects, current_state, roles, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -221,6 +221,19 @@ return [
                 'default' => 0,
             ]
         ],
+        'mockup' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_project.mockup',
+            'config' => [
+                'type' => 'check',
+                'items' => [
+                    '1' => [
+                        '0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
+                    ]
+                ],
+                'default' => 0,
+            ]
+        ],
         'appointments' => [
             'exclude' => true,
             'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_project.appointments',
@@ -276,7 +289,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'tx_relax5core_domain_model_person',
+                'foreign_table' => 'tx_relax5core_domain_model_company',
                 'minitems' => 0,
                 'maxitems' => 1,
             ],
@@ -404,6 +417,24 @@ return [
                 'minitems' => 0,
                 'maxitems' => 1,
             ],
+        ],
+        'roles' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_project.roles',
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_relax5project_domain_model_role',
+                'foreign_field' => 'project',
+                'maxitems' => 9999,
+                'appearance' => [
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ],
+            ],
+
         ],
     
         'project' => [

@@ -16,14 +16,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'name,description,optiongroup,optionlist,labeltext,exclusive,dropdown,required_for,new_mapping,input_type,input_values,global_option,enable',
+        'searchFields' => 'name,description,optiongroup,optionlist,labeltext,exclusive,dropdown,display_condition,new_mapping,input_type,input_values,global_option,enable',
         'iconfile' => 'EXT:relax5project/Resources/Public/Icons/tx_relax5project_domain_model_productoption.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, optiongroup, optionlist, labeltext, exclusive, dropdown, required_for, new_mapping, input_type, input_values, global_option, enable',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, optiongroup, optionlist, labeltext, exclusive, dropdown, display_condition, new_mapping, input_type, input_values, global_option, enable',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, optiongroup, optionlist, labeltext, exclusive, dropdown, required_for, new_mapping, input_type, input_values, global_option, enable, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, optiongroup, optionlist, labeltext, exclusive, dropdown, display_condition, new_mapping, input_type, input_values, global_option, enable, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -180,9 +180,9 @@ return [
                 'default' => 0,
             ]
         ],
-        'required_for' => [
+        'display_condition' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_productoption.required_for',
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_productoption.display_condition',
             'config' => [
                 'type' => 'input',
                 'size' => 30,

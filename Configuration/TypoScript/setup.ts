@@ -74,6 +74,56 @@ plugin.tx_relax5project_mockup {
     }
 }
 
+plugin.tx_relax5project_xmlexport {
+    view {
+        templateRootPaths.0 = EXT:relax5project/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_relax5project_xmlexport.view.templateRootPath}
+        partialRootPaths.0 = EXT:relax5project/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_relax5project_xmlexport.view.partialRootPath}
+        layoutRootPaths.0 = EXT:relax5project/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_relax5project_xmlexport.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_relax5project_xmlexport.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plugin are uncached
+        requireCHashArgumentForActionArguments = 1
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+plugin.tx_relax5project_print {
+    view {
+        templateRootPaths.0 = EXT:relax5project/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_relax5project_print.view.templateRootPath}
+        partialRootPaths.0 = EXT:relax5project/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_relax5project_print.view.partialRootPath}
+        layoutRootPaths.0 = EXT:relax5project/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_relax5project_print.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_relax5project_print.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plugin are uncached
+        requireCHashArgumentForActionArguments = 1
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
 # these classes are only used in auto-generated templates
 plugin.tx_relax5project._CSS_DEFAULT_STYLE (
     textarea.f3-form-error {
@@ -202,7 +252,7 @@ xml = PAGE
 xml {
   typeNum = 1102
   1 = TEXT
-  1.value = <?xml version="1.0" encoding="UTF-8"?>
+  1.value = <?xml version="1.0" encoding="UTF-8"
   10 =< tt_content.list.20.relax5project_xmlexport
 
   config {
@@ -229,4 +279,3 @@ print {
 
   #headerData < page.headerData
 }
-

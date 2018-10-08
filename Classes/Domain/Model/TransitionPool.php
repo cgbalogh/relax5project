@@ -150,6 +150,13 @@ class TransitionPool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $global = false;
 
     /**
+     * Meta
+     *
+     * @var bool
+     */
+    protected $meta = false;
+
+    /**
      * Actions
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\ActionPool>
@@ -188,13 +195,6 @@ class TransitionPool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @lazy
      */
     protected $allowGroup = null;
-
-    /**
-     * Meta
-     *
-     * @var bool
-     */
-    protected $meta = false;
 
     /**
      * __construct
@@ -851,7 +851,7 @@ class TransitionPool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the allowWithAppointment
      *
-     * @param int $allowWithAppointment
+     * @param bool $allowWithAppointment
      * @return void
      */
     public function setAllowWithAppointment($allowWithAppointment)

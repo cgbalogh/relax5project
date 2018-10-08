@@ -362,17 +362,19 @@
                       <f:image 
                         title="#{appointment.uid} {appointment.appointmentType}"
                         src="EXT:relax5core/Resources/Public/Icons/appointment_type_{appointment.appointmentType}.png" />
-                      <f:if condition="({appointment.result} > 0) && ({appointment.appointmentStatus > 2})">
+                      <f:if condition="({appointment.result} > 0) && ({appointment.appointmentStatus} > 2)">
                         <f:then>
                           <f:image 
                             title="#{appointment.uid} 
 {f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result')}: {f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result.{appointment.result}')}
-S:{appointment.appointmentStatus} R:{appointment.result} C:{appointment.postponedCounter}"
+S:{appointment.appointmentStatus} R:{appointment.result} N:{appointment.nextAction} C:{appointment.postponedCounter} D:{appointment.done->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}"
                             src="EXT:relax5core/Resources/Public/Icons/appointment_result_{appointment.result}.png" />
                         </f:then>
                         <f:else>
                           <f:image 
-                            title="#{appointment.uid} {appointment.appointmentStatus} {appointment.postponedCounter}"
+			    title="#{appointment.uid} 
+{f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result')}: {f:translate(key:'LLL:EXT:relax5core/Resources/Private/Language/locallang.xlf:tx_relax5core_domain_model_appointment.result.{appointment.result}')}
+S:{appointment.appointmentStatus} R:{appointment.result} N:{appointment.nextAction} C:{appointment.postponedCounter} D:{appointment.done->f:format.date( format: '{f:translate(key: \'LLL:EXT:relax5core/Resources/Private/Language/locallang.xml:tx_relax5core_general.datetime_format\')}' )}"
                             src="EXT:relax5core/Resources/Public/Icons/appointment_status_{appointment.appointmentStatus}.png" />
                         </f:else>
                       </f:if>

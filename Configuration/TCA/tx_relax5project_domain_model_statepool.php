@@ -122,10 +122,11 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_statepool.description',
             'config' => [
-                'type' => 'input',
-                'size' => 30,
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 15,
                 'eval' => 'trim'
-            ],
+            ]
         ],
         'subgroup' => [
             'exclude' => true,

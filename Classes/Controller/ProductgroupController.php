@@ -111,9 +111,9 @@ class ProductgroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * action loadProducts
      *
-     * @param \CGB\Relax5project\Domain\Model\Productgroup $productgroup    
-     * @param string $prefix 
-     * @ignorevalidation$productgroup
+     * @param \CGB\Relax5project\Domain\Model\Productgroup $productgroup
+     * @param string $prefix
+     * @ignorevalidation $productgroup
      * @return void
      */
     public function loadProductsAction(\CGB\Relax5project\Domain\Model\Productgroup $productgroup = null, $prefix = '')
@@ -121,12 +121,12 @@ class ProductgroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         if (!is_null($productgroup)) {
             $products = $productgroup->getProducts();
         } else {
-            $products = [0=>''];
+            $products = [0 => ''];
         }
         $this->view->assignMultiple([
             'prefix' => $prefix,
             'products' => $products,
-            'statusOptions' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5project_domain_model_mapping', 'status', 'relax5project'),
+            'statusOptions' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5project_domain_model_mapping', 'status', 'relax5project')
         ]);
     }
 
@@ -135,7 +135,7 @@ class ProductgroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      *
      * @param \CGB\Relax5project\Domain\Model\Productgroup $productgroup
      * @param \CGB\Relax5project\Domain\Model\Product $productgroup
-     * @param \CGB\Relax5project\Domain\Model\Project $productgroup
+     * @param \CGB\Relax5project\Domain\Model\Project $project
      * @ignorevalidation $productgroup
      * @ignorevalidation $product
      * @ignorevalidation $project
@@ -144,17 +144,13 @@ class ProductgroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     public function loadProductoptionsAction(
         \CGB\Relax5project\Domain\Model\Productgroup $productgroup = null,
         \CGB\Relax5project\Domain\Model\Product $product = null,
-        \CGB\Relax5project\Domain\Model\Project $project = null
-    )
+        \CGB\Relax5project\Domain\Model\Project $project = null)
     {
         $this->view->assignMultiple([
             'productgroup' => $productgroup,
             'product' => $product,
             'project' => $project,
-            'statusOptions' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5project_domain_model_mapping', 'status', 'relax5project'),
+            'statusOptions' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5project_domain_model_mapping', 'status', 'relax5project')
         ]);
     }
-    
 }
-
-

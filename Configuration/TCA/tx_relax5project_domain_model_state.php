@@ -17,14 +17,14 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'state_name,state_group,due,due_orig,done,forward,rejected,forward_date,notify_date,tag_data,data,appointments,state,owner,usergroup,additional_infos,forwarder,responsibilities',
+        'searchFields' => 'state_name,state_group,due,due_orig,done,forward,rejected,forward_date,notify_date,notify_times,tag_data,data,number,appointments,state,owner,usergroup,additional_infos,forwarder,responsibilities,creator',
         'iconfile' => 'EXT:relax5project/Resources/Public/Icons/tx_relax5project_domain_model_state.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, state_name, state_group, due, due_orig, done, forward, rejected, forward_date, notify_date, tag_data, data, appointments, state, owner, usergroup, additional_infos, forwarder, responsibilities',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, state_name, state_group, due, due_orig, done, forward, rejected, forward_date, notify_date, notify_times, tag_data, data, number, appointments, state, owner, usergroup, additional_infos, forwarder, responsibilities, creator',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, state_name, state_group, due, due_orig, done, forward, rejected, forward_date, notify_date, tag_data, data, appointments, state, owner, usergroup, additional_infos, forwarder, responsibilities, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, state_name, state_group, due, due_orig, done, forward, rejected, forward_date, notify_date, notify_times, tag_data, data, number, appointments, state, owner, usergroup, additional_infos, forwarder, responsibilities, creator, --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -203,6 +203,15 @@ return [
                 'default' => time()
             ],
         ],
+        'notify_times' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_state.notify_times',
+            'config' => [
+                'type' => 'input',
+                'size' => 4,
+                'eval' => 'int'
+            ]
+        ],
         'tag_data' => [
             'exclude' => true,
             'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_state.tag_data',
@@ -220,6 +229,15 @@ return [
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim'
+            ]
+        ],
+        'number' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_state.number',
+            'config' => [
+                'type' => 'input',
+                'size' => 4,
+                'eval' => 'int'
             ]
         ],
         'appointments' => [
@@ -321,6 +339,17 @@ return [
                 ],
             ],
 
+        ],
+        'creator' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:relax5project/Resources/Private/Language/locallang_db.xlf:tx_relax5project_domain_model_state.creator',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'fe_users',
+                'minitems' => 0,
+                'maxitems' => 1,
+            ],
         ],
     
         'project' => [

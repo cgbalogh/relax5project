@@ -25,6 +25,56 @@ class PhasePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
+    public function getNameReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getName()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setNameForStringSetsName()
+    {
+        $this->subject->setName('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'name',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getStyleReturnsInitialValueForString()
+    {
+        self::assertSame(
+            '',
+            $this->subject->getStyle()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setStyleForStringSetsStyle()
+    {
+        $this->subject->setStyle('Conceived at T3CON10');
+
+        self::assertAttributeEquals(
+            'Conceived at T3CON10',
+            'style',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
     public function getStatesReturnsInitialValueForStatePool()
     {
         $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
@@ -32,7 +82,6 @@ class PhasePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             $newObjectStorage,
             $this->subject->getStates()
         );
-
     }
 
     /**
@@ -50,7 +99,6 @@ class PhasePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
             'states',
             $this->subject
         );
-
     }
 
     /**
@@ -85,6 +133,5 @@ class PhasePoolTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $this->inject($this->subject, 'states', $statesObjectStorageMock);
 
         $this->subject->removeState($state);
-
     }
 }

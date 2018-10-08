@@ -40,6 +40,7 @@ class Mapping extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Productoption
      *
      * @var \CGB\Relax5project\Domain\Model\Productoption
+     * @lazy
      */
     protected $productoption = null;
 
@@ -47,6 +48,7 @@ class Mapping extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Subproduct
      *
      * @var \CGB\Relax5project\Domain\Model\Subproduct
+     * @lazy
      */
     protected $subproduct = null;
 
@@ -54,6 +56,7 @@ class Mapping extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * availableItem
      *
      * @var \CGB\Relax5project\Domain\Model\AvailableItem
+     * @lazy
      */
     protected $availableItem = null;
 
@@ -176,7 +179,7 @@ class Mapping extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5project_domain_model_mapping', 'status', 'relax5project')[$this->status];
     }
-    
+
     /**
      * Sets the status
      *

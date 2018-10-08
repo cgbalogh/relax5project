@@ -6,8 +6,20 @@
 <div class="rlx5-item-project-header rlx5-project rlx5-core-data-box {f:if(condition: '{project}',then:'rlx5-ispopulated',else:'rlx5-isempty')} draggable" projectuid="{project.uid}">
   <div class="rlx5-coredata-single rlx5-project-headerdata">
     <div class="">
-      <span reference="project_{project.uid}_productgroup_name">{project.productgroup.name}</span>
-      <span reference="project_{project.uid}_product_name">{project.product.name}</span>
+      <f:if condition="{project.productgroup}">
+        <f:then>
+          <b>
+          <span reference="project_{project.uid}_productgroup_name">{project.productgroup.name}</span>
+          <span reference="project_{project.uid}_product_name">{project.product.name}</span>
+          </b>
+        </f:then>
+        <f:else>
+          <span reference="project_{project.uid}_productgroup_name">
+            <b><f:translate key="tx_relax5project_domain_model_project.edit_productgroup" />&nbsp;&#8702;</b>
+          </span>
+          <span reference="project_{project.uid}_product_name"></span>
+        </f:else>
+      </f:if>
     </div>
 
     <div class="rlx5-buttons"><f:if condition="{project.clone}"><f:then><f:if condition="{project.project}"><a:actionicon 

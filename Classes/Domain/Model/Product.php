@@ -24,7 +24,7 @@ class Product extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @inject
      */
     protected $productgroupRepository = null;
-    
+
     /**
      * Name
      *
@@ -53,6 +53,14 @@ class Product extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\Productoption>
      */
     protected $productoptions = null;
+
+    /**
+     * Subproducts
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\Subproduct>
+     * @cascade remove
+     */
+    protected $subproducts = null;
 
     /**
      * Returns the name
@@ -116,6 +124,7 @@ class Product extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected function initStorageObjects()
     {
         $this->productoptions = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->subproducts = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -183,22 +192,45 @@ class Product extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the productoptionsFull
-     * 
-     * @return array
+     * Adds a SubProduct
+     *
+     * @param \CGB\Relax5project\Domain\Model\Subproduct $subproduct
+     * @return void
      */
-    public function getProductoptionsFull () {
-        $plainList = $this->productgroupRepository->findProductoptions($this->getUid());
-        $productoptions = [];
-        $productoptionsFull = [];
-        foreach ($this->productoptions as $productoption) {
-            $productoptions[$productoption->getUid()] = $productoption;
-        }
-        
-        foreach ($plainList as $uid) {
-            $productoptionsFull[] = $productoptions[$uid];
-        }
-        return $productoptionsFull;
+    public function addSubproduct(\CGB\Relax5project\Domain\Model\Subproduct $subproduct)
+    {
+        $this->subproducts->attach($subproduct);
     }
-    
+
+    /**
+     * Removes a SubProduct
+     *
+     * @param \CGB\Relax5project\Domain\Model\Subproduct $subproductToRemove The Subproduct to be removed
+     * @return void
+     */
+    public function removeSubproduct(\CGB\Relax5project\Domain\Model\Subproduct $subproductToRemove)
+    {
+        $this->subproducts->detach($subproductToRemove);
+    }
+
+    /**
+     * Returns the subproducts
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\Subproduct> subproducts
+     */
+    public function getSubproducts()
+    {
+        return $this->subproducts;
+    }
+
+    /**
+     * Sets the subproducts
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\Subproduct> $subproducts
+     * @return void
+     */
+    public function setSubproducts(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $subproducts)
+    {
+        $this->subproducts = $subproducts;
+    }
 }

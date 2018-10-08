@@ -45,7 +45,12 @@ class ProjectsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
 	* @return string
 	*/
 	public function render ($item) {
-        return $this->projectRepository->findByPerson($item);
+        if (get_class($item) == 'CGB\\Relax5core\\Domain\\Model\\Person') {
+          return $this->projectRepository->findByPerson($item);
+        } elseif (get_class($item) == 'CGB\\Relax5core\\Domain\\Model\\Company') {
+          return $this->projectRepository->findByCompany($item);
+        }
+        return null;
 	}
 
 }

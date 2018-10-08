@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-06T13:00:12Z" product-name="relax5project">
+		<header/>
+		<body>
+			<trans-unit id="due.description">
+				<source>Due</source>
+			</trans-unit>
+			<trans-unit id="done.description">
+				<source>Done</source>
+			</trans-unit>
+			<trans-unit id="comments.description">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="id.description">
+				<source>Id</source>
+			</trans-unit>
+			<trans-unit id="owner.description">
+				<source>Owner</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

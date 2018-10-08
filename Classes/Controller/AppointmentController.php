@@ -40,7 +40,7 @@ class AppointmentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      * @inject
      */
     protected $usergroupRepository = null;
-    
+
     /**
      * accessControlService
      *
@@ -48,7 +48,7 @@ class AppointmentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      * @inject
      */
     protected $accessControlService = null;
-    
+
     /**
      * @api
      * @return string
@@ -87,8 +87,7 @@ class AppointmentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      */
     public function editAction(\CGB\Relax5core\Domain\Model\Appointment $appointment)
     {
-                echo 'editB';
-
+        echo 'editB';
         $this->view->assignMultiple([
             'durationSelect' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5core_domain_model_appointment', 'duration', 'relax5core'),
             'appointmentTypeSelect' => \CGB\Relax5core\Service\DivService::makeSelectFromTCA('tx_relax5core_domain_model_appointment', 'appointment_type', 'relax5core'),

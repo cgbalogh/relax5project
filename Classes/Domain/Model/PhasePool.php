@@ -18,6 +18,22 @@ namespace CGB\Relax5project\Domain\Model;
 class PhasePool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
+     * Name
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $name = '';
+
+    /**
+     * style
+     *
+     * @var string
+     * @validate NotEmpty
+     */
+    protected $style = '';
+
+    /**
      * States
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\CGB\Relax5project\Domain\Model\StatePool>
@@ -89,5 +105,47 @@ class PhasePool extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setStates(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $states)
     {
         $this->states = $states;
+    }
+
+    /**
+     * Returns the name
+     *
+     * @return string $name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the name
+     *
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Returns the style
+     *
+     * @return string $style
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+
+    /**
+     * Sets the style
+     *
+     * @param string $style
+     * @return void
+     */
+    public function setStyle($style)
+    {
+        $this->style = $style;
     }
 }

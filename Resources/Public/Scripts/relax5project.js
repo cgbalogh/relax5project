@@ -70,10 +70,17 @@ function loadProjects() {
     person = parseInt($('._focusobjectid[focus="person"]').attr('uid'));
     company = parseInt($('._focusobjectid[focus="company"]').attr('uid'));
 
+    if (person > 0) {
+      para = 'tx_relax5project_project[load]=1&tx_relax5project_project[person]=' + person;
+    } else if (company > 0) {
+      para = 'tx_relax5project_project[load]=1&tx_relax5project_project[company]=' + company;
+    }
+    
+
     if (typeof(uri) !== 'undefined') {
         $.post(
             uri, 
-            'tx_relax5project_project[load]=1&tx_relax5project_project[person]=' + person, 
+            para, 
             function(data) {
                 $( '#rlx5-project-container' ).html(data);
                 autoAjax();

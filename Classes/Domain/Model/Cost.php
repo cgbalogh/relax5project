@@ -67,9 +67,17 @@ class Cost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $void = false;
 
     /**
+     * Keycode
+     *
+     * @var string
+     */
+    protected $keycode = '';
+
+    /**
      * Owner
      *
      * @var \CGB\Relax5core\Domain\Model\Owner
+     * @lazy
      */
     protected $owner = null;
 
@@ -77,15 +85,9 @@ class Cost extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Can Confirm
      *
      * @var \CGB\Relax5core\Domain\Model\Owner
+     * @lazy
      */
     protected $canConfirm = null;
-
-    /**
-     * Keycode
-     *
-     * @var string
-     */
-    protected $keycode = '';
 
     /**
      * Returns the date

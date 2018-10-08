@@ -5,7 +5,8 @@ config.tx_extbase {
 
       CGB\Relax5core\Domain\Model\Appointment {
         subclasses {
-          # Tx_Relax5project_Appointment = CGB\Relax5project\Domain\Model\Appointment
+          Tx_Relax5project_Appointment = CGB\Relax5project\Domain\Model\Appointment
+          
         }
       }
       CGB\Relax5project\Domain\Model\Appointment {

@@ -25,8 +25,25 @@ class AppointmentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function dummyTestToNotLeaveThisFileEmpty()
+    public function getLockedReturnsInitialValueForBool()
     {
-        self::markTestIncomplete();
+        self::assertSame(
+            false,
+            $this->subject->getLocked()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setLockedForBoolSetsLocked()
+    {
+        $this->subject->setLocked(true);
+
+        self::assertAttributeEquals(
+            true,
+            'locked',
+            $this->subject
+        );
     }
 }
